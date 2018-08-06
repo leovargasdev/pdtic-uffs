@@ -1,37 +1,53 @@
 <template name="formulario">
+    <p class="range-field">
+        <input type="range" id="test5" value="0" min="0" max="10" />
+    </p>
     <div class="row">
-        <form class="formulario-uffs col m12">
-            <center>
-                <h2>Necessidades de TI</h2>
-                <div class="divider"></div>
-            </center>
+        <center>
+            <h2>Necessidades de TI</h2>
+            <div class="divider"></div>
+        </center>
+        <!-- FORMULARIO -->
+        <form class="formulario-uffs col s12 m8 offset-m2">
+            <!-- TELA 1 -->
             <div class="row">
+                <!-- QUESTÃO 1 -->
+                <div class="col s12 m12">
+                    <p>1) Indique a necessidade de informações(Ex: Relatórios, Consultas, Registtros), considerando as necessidades do seu setor.</p>
+                    <div id="resposta-q1">
 
-                <div class="input-field col m12">
-                    <input name="testeForm" type="text">
-                    <label for="testeForm">TESTE</label>
+                        <!-- INSERT AQUI !! -->
+
+                    </div>
+
+                    <!-- BOTÃO NOVO CAMPO -->
+                    <div class="col m2 offset-m10">
+                        <a id="nova-resposta-q1" class="btn waves-effect waves-light" title="Novo campo"><i class="fa fa-plus"></i></a>
+                    </div>
                 </div>
 
-                <div id="itens-servico" class="col m8 offset-m2">
+                <!-- QUESTÃO 2 -->
+                <div class="col s12 m12">
+                    <p>2) Indique processos que você considera que devem ser informatizados e/ou automatizados.</p>
+                    <div id="resposta-q2">
 
-                    <!-- INSERT AQUI !! -->
+                        <!-- INSERT AQUI !! -->
 
-                </div>
+                    </div>
 
-                <!-- NOVO CAMPO -->
-                <div class="col m1 col offset-m11">
-                    <a id="novo-item" class="btn-floating btn-large"><i class="fa fa-plus"></i></a>
+                    <!-- BOTÃO NOVO CAMPO -->
+                    <div class="col m2 offset-m10">
+                        <a id="nova-resposta-q2" class="btn waves-effect waves-light" title="Novo campo"><i class="fa fa-plus"></i></a>
+                    </div>
                 </div>
 
             </div>
+
+            <!-- BOTÃO ENVIAR -->
             <div class="row">
                 <button class="btn waves-effect waves-light" type="submit" name="action">
                     ENVIAR
                 </button>
-            </div>
-
-            <div class="row">
-                <a id="btn-teste" class="btn btn-large">TESTE</a>
             </div>
         </form>
     </div>
