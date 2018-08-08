@@ -18,7 +18,7 @@ var sistemas = [
     { sistema: 'Sistema de Almoxarifado - ALX' },
     { sistema: 'Sistema de Informações Patrimoniais - SIP' },
     { sistema: 'Sistema de Compras e Licitações - SCL' },
-    { sistema: 'Sistema de Gestão Financeira e Contratos - SGF/CONTRATOS' },
+    { sistema: 'Sistema de Gestão Financeira e Contratos - SGF' },
 ];
 var contadorQ1;
 var contadorQ2;
@@ -28,6 +28,7 @@ Template.formulario.onRendered(function() {
     contadorQ1 = 0;
     contadorQ2 = 0;
     contadorQ3 = 0;
+    novoBloco(4, 0);
 });
 
 Template.formulario.helpers({
@@ -49,6 +50,10 @@ Template.formulario.events({
         contadorQ3 = contadorQ3 + 1;
     },
     'submit .formulario-uffs': function(){
+        let t = event.target.r4Grupo0.value;
+        let t2 = event.target.r4Grupo1.value;
+        console.log("valor do radio: " + t);
+        console.log("valor do  2: " + t2);
         return false;
     }
 })
@@ -67,14 +72,33 @@ var novoBloco = function(nQuestao, contador){
 
 let blocoForm = function(nQuestao, contador){
     if(nQuestao == 1 || nQuestao == 2){
-        return('<div class="input-field col s12 m6"><textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea"></textarea><label for="r'+nQuestao+'descricao'+contador+'">Descrição detalhada</label></div><div class="input-field col s12 m6"><textarea id="r'+nQuestao+'justificativa'+contador+'" class="materialize-textarea"></textarea><label for="r'+nQuestao+'justificativa'+contador+'">Justificativa da necessidade</label></div>');
+        return('<div class="input-field col s12 m12 l6">\
+        <textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea"></textarea><label for="r'+nQuestao+'descricao'+contador+'">Descrição detalhada</label></div><div class="input-field col s12 m12 l6"><textarea id="r'+nQuestao+'justificativa'+contador+'" class="materialize-textarea"></textarea><label for="r'+nQuestao+'justificativa'+contador+'">Justificativa da necessidade</label></div>');
     } else if (nQuestao == 3){
-        let result = '<div class="row"><div class="input-field col s12 m5"><select name="r'+nQuestao+'sistema'+contador+'"><option value="outro" disabled selected>Outro</option>';
+        let result = '<div class="row"><div class="input-field col s12 m12 l6"><select name="r'+nQuestao+'sistema'+contador+'"><option value="outro" disabled selected>Outro</option>';
         sistemas.forEach((s) => {
             let opt = '<option value="' + s['sistema'] + '">' + s['sistema'] + '</option>';
             result = result + opt;
         });
 
-        return(result + '</select><label for="r'+nQuestao+'sistema'+contador+'">Selecionar o Sistema</label></div></div><div class="row"><div class="input-field col s12 m6"><textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea"></textarea><label for="r'+nQuestao+'descricao'+contador+'">Descrição detalhada</label></div><div class="input-field col s12 m6"><textarea id="r'+nQuestao+'justificativa'+contador+'" class="materialize-textarea"></textarea><label for="r'+nQuestao+'justificativa'+contador+'">Justificativa</label></div></div>');
+        return(result + '</select><label for="r'+nQuestao+'sistema'+contador+'">Selecionar o Sistema</label></div></div><div class="row"><div class="input-field col s12 m12 l6"><textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea"></textarea><label for="r'+nQuestao+'descricao'+contador+'">Descrição detalhada</label></div><div class="input-field col s12 m12 l6"><textarea id="r'+nQuestao+'justificativa'+contador+'" class="materialize-textarea"></textarea><label for="r'+nQuestao+'justificativa'+contador+'">Justificativa</label></div></div>');
+    } else if(nQuestao == 4){
+        let result = '';
+        let nGrupos = 0;
+        sistemas.forEach((s) => {
+            let aux = '<div class="row"><div class="col s12 m12 l4"><b>' + s['sistema'] + ': </b></div>';
+            for(let radioNum = 1; radioNum < 8; radioNum++){
+                if(radioNum < 6){
+                    aux = aux + '<div class="col s1 m1 l1"><label><input value="' + radioNum + '" class="radio-form" name="r4Grupo' + nGrupos + '" type="radio"/><span>' + radioNum + '</span></label></div>';
+                }else if(radioNum == 6){
+                    aux = aux + '<div class="col s2 m2 l1"><label><input value="não uso" class="radio-form" name="r4Grupo' + nGrupos + '" type="radio"/><span>Não uso</span></label></div>';
+                }else{
+                    aux = aux + '<div class="col s3 m3 l2"><label><input value="não conheço" class="radio-form" name="r4Grupo' + nGrupos + '" type="radio"/><span>Não conheço</span></label></div>';
+                }
+            }
+            result = result + aux + '</div>';
+            nGrupos = nGrupos + 1;
+        });
+        return result;
     }
 }

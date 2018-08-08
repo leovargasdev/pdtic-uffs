@@ -1,0 +1,9 @@
+.questao-radio label span{
+    font-size: 15px;
+    color: #656565;
+    padding-left: 2px;
+}
+.radio-form{
+    position: inherit !important;
+    opacity: 1 !important;
+}
