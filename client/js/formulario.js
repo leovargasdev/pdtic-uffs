@@ -52,12 +52,9 @@ Template.formulario.onRendered(function() {
     novoBloco(4, 0); // QUESTÃO 4
     novoBloco(5, 0); // QUESTÃO 5
     novoBloco(6, 0); // QUESTÃO 6
-    telaCadastro = 1;
+    telaCadastro = 0;
     renderizaTela(telaCadastro);
-});
-
-Template.formulario.helpers({
-
+    $('select').material_select();
 });
 
 Template.formulario.events({
@@ -89,7 +86,7 @@ Template.formulario.events({
         }
     },
     'click #btn-volta-cadastro': function(event){
-        if(telaCadastro > 1){
+        if(telaCadastro > 0){
             telaCadastro = telaCadastro - 1;
             renderizaTela(telaCadastro);
         }
@@ -104,7 +101,7 @@ Template.formulario.events({
 })
 
 var renderizaTela = function(tela){
-    for(let t = 1; t < 5; t++){
+    for(let t = 0; t < 5; t++){
         if(t == tela)
             document.getElementById("questoes-tela-" + t).style.display = "block";
         else
