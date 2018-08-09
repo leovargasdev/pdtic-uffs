@@ -39,9 +39,9 @@ var contadores;
 var telaCadastro;
 Template.formulario.onRendered(function() {
     contadores = {1: 0, 2: 0, 3: 0, 7: 0, 8: 0};
-    novoBloco(4, 0); // QUESTÃO 4
-    novoBloco(5, 0); // QUESTÃO 5
-    novoBloco(6, 0); // QUESTÃO 6
+    novoBloco(4, 0, false); // QUESTÃO 4
+    novoBloco(5, 0, false); // QUESTÃO 5
+    novoBloco(6, 0, false); // QUESTÃO 6
     telaCadastro = 0;
     renderizaTela(telaCadastro);
     $('select').material_select();
@@ -49,24 +49,24 @@ Template.formulario.onRendered(function() {
 
 Template.formulario.events({
     'click #nova-resposta-q1': function(event){
-        novoBloco(1, contadores['1']);
+        novoBloco(1, contadores['1'], true);
         contadores['1'] = contadores['1'] + 1;
     },
     'click #nova-resposta-q2': function(event){
-        novoBloco(2, contadores['2']);
+        novoBloco(2, contadores['2'], true);
         contadores['2'] = contadores['2'] + 1;
     },
     'click #nova-resposta-q3': function(event){
-        novoBloco(3, contadores['3']);
+        novoBloco(3, contadores['3'], true);
         $('select').material_select();
         contadores['3'] = contadores['3'] + 1;
     },
     'click #nova-resposta-q7': function(event){
-        novoBloco(7, contadores['7']);
+        novoBloco(7, contadores['7'], true);
         contadores['7'] = contadores['7'] + 1;
     },
     'click #nova-resposta-q8': function(event){
-        novoBloco(8, contadores['8']);
+        novoBloco(8, contadores['8'], true);
         contadores['8'] = contadores['8'] + 1;
     },
     'click #btn-avanca-cadastro': function(event){
@@ -83,10 +83,13 @@ Template.formulario.events({
     },
     'submit .formulario-uffs': function(){
         let respostas = {}
+        let papel = event.target.papelUFFS.value;
+        let turno = event.target.turnoUFFS.value;
         for(let question = 1; question < 9; question++)
             respostas[question] = obterRespostas(question, event.target);
         console.log(respostas);
-        return false;
+        Meteor.call('novaResposta', papel, turno, respostas);
+        // return false;
     }
 })
 
@@ -137,10 +140,11 @@ var renderizaTela = function(tela){
     //     document.getElementById("btn-enviar").style.display = "none";
 }
 
-var novoBloco = function(nQuestao, contador){
+var novoBloco = function(nQuestao, contador, notificacao){
     let divResposta = "resposta-q" + nQuestao;
 
-    Bert.alert("Nova resposta na questão ["+nQuestao+"]", "info", "growl-top-left");
+    if(notificacao)
+        Bert.alert("Nova resposta na questão ["+nQuestao+"]", "info", "growl-top-left");
 
     let mDiv = document.getElementById(divResposta);
     const block_to_insert = document.createElement('div');

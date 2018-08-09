@@ -1,5 +1,8 @@
 <template name="formulario">
     <div class="row">
+        <div class="col m12">
+            <a href="/respostas" class="waves-effect waves-light btn brown darken-2">respostas</a>
+        </div>
         <center>
             <h2>Necessidades de TI</h2>
             <div class="divider"></div>
@@ -16,7 +19,7 @@
                             <h5 style="margin-top:25px;">Papel:</h5>
                         </div>
                         <div class="input-field col s10 m10 l3">
-                            <select name="papel-uffs">
+                            <select name="papelUFFS">
                                 <option value="aluno">Aluno</option>
                                 <option value="professor">Professor</option>
                                 <option value="servidor">Servidor</option>
@@ -29,11 +32,11 @@
                             <h5 style="margin-top:25px;">Turno:</h5>
                         </div>
                         <div class="input-field col s10 m10 l3">
-                            <select name="turno-uffs">
-                                <option value="aluno">Matutino</option>
-                                <option value="professor">Vespertino</option>
-                                <option value="servidor">Noturno</option>
-                                <option value="outro">Integral(Matutino/Vespertino)</option>
+                            <select name="turnoUFFS">
+                                <option value="Matutino">Matutino</option>
+                                <option value="Vespertino">Vespertino</option>
+                                <option value="Noturno">Noturno</option>
+                                <option value="Integral">Integral(Matutino/Vespertino)</option>
                             </select>
                         </div>
                     </div>
