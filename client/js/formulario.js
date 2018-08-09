@@ -20,7 +20,6 @@ var sistemas = [
     { valor: 'Sistema de Compras e Licitações - SCL' },
     { valor: 'Sistema de Gestão Financeira e Contratos - SGF' }
 ];
-
 var servicos = [
     { valor: 'VPN' },
     { valor: 'Internet' },
@@ -30,25 +29,16 @@ var servicos = [
     { valor: 'Videoconferência' },
     { valor: 'Suporte a sistemas' }
 ];
-
 var equipamentos = [
     { valor: 'Computadores Desktop' },
     { valor: 'Notebooks' },
     { valor: 'Impressoras' }
 ];
-
-var contadorQ1;
-var contadorQ2;
-var contadorQ3;
-var contadorQ7;
-var contadorQ8;
+var classificacao = {1: "Ruim", 2: "Razoável", 3: "Médio", 4: "Satisfatório", 5: "Ótimo", 6: "Não uso", 7: "Não conheço"}
+var contadores;
 var telaCadastro;
 Template.formulario.onRendered(function() {
-    contadorQ1 = 0;
-    contadorQ2 = 0;
-    contadorQ3 = 0;
-    contadorQ7 = 0;
-    contadorQ8 = 0;
+    contadores = {1: 0, 2: 0, 3: 0, 7: 0, 8: 0};
     novoBloco(4, 0); // QUESTÃO 4
     novoBloco(5, 0); // QUESTÃO 5
     novoBloco(6, 0); // QUESTÃO 6
@@ -59,25 +49,25 @@ Template.formulario.onRendered(function() {
 
 Template.formulario.events({
     'click #nova-resposta-q1': function(event){
-        novoBloco(1, contadorQ1);
-        contadorQ1 = contadorQ1 + 1;
+        novoBloco(1, contadores['1']);
+        contadores['1'] = contadores['1'] + 1;
     },
     'click #nova-resposta-q2': function(event){
-        novoBloco(2, contadorQ2);
-        contadorQ2 = contadorQ2 + 1;
+        novoBloco(2, contadores['2']);
+        contadores['2'] = contadores['2'] + 1;
     },
     'click #nova-resposta-q3': function(event){
-        novoBloco(3, contadorQ3);
+        novoBloco(3, contadores['3']);
         $('select').material_select();
-        contadorQ3 = contadorQ3 + 1;
+        contadores['3'] = contadores['3'] + 1;
     },
     'click #nova-resposta-q7': function(event){
-        novoBloco(7, contadorQ7);
-        contadorQ7 = contadorQ7 + 1;
+        novoBloco(7, contadores['7']);
+        contadores['7'] = contadores['7'] + 1;
     },
     'click #nova-resposta-q8': function(event){
-        novoBloco(8, contadorQ8);
-        contadorQ8 = contadorQ8 + 1;
+        novoBloco(8, contadores['8']);
+        contadores['8'] = contadores['8'] + 1;
     },
     'click #btn-avanca-cadastro': function(event){
         if(telaCadastro < 4){
@@ -92,13 +82,47 @@ Template.formulario.events({
         }
     },
     'submit .formulario-uffs': function(){
-        let t = event.target.r4Grupo0.value;
-        let t2 = event.target.r4Grupo1.value;
-        console.log("valor do radio: " + t);
-        console.log("valor do  2: " + t2);
+        let respostas = {}
+        for(let question = 1; question < 9; question++)
+            respostas[question] = obterRespostas(question, event.target);
+        console.log(respostas);
         return false;
     }
 })
+
+var obterRespostas = function(nResposta, campo){
+    let campos = {d: "descricao", j: "justificativa", s: "sistema", n: "necessidade"};
+    let result = {};
+    if(nResposta == 1 || nResposta == 2 || nResposta == 3 || nResposta == 7 || nResposta == 8){
+        for(let k = 0; k < contadores[nResposta]; k++){
+            result[k] = {
+                d: campo['r' + nResposta + campos['d'] + k].value,
+                j: campo['r' + nResposta + campos['j'] + k].value
+            };
+            if(nResposta == 3){
+                result[k]['s'] = campo['r' + nResposta + campos['s'] + k].value;
+            }else if(nResposta == 8){
+                result[k]['n'] = campo['r' + nResposta + campos['n'] + k].value;
+            }
+        }
+    } else if(nResposta == 4 || nResposta == 5 || nResposta == 6){
+        let grupo = 0;
+        let itens = [];
+        if(nResposta == 4)      itens = sistemas;
+        else if(nResposta == 5) itens = servicos;
+        else                    itens = equipamentos;
+        itens.forEach((item) => {
+            result[grupo] = {
+                s: item['valor'],
+                c: classificacao[campo['r' + nResposta + 'Grupo' + grupo].value]
+            };
+            grupo = grupo + 1;
+        });
+    }
+    if(!Object.keys(result).length)
+        return "Sem resposta";
+    return result;
+}
 
 var renderizaTela = function(tela){
     for(let t = 0; t < 5; t++){
@@ -107,10 +131,10 @@ var renderizaTela = function(tela){
         else
             document.getElementById("questoes-tela-" + t).style.display = "none";
     }
-    if(tela == 4)
+    // if(tela == 4)
         document.getElementById("btn-enviar").style.display = "block";
-    else
-        document.getElementById("btn-enviar").style.display = "none";
+    // else
+    //     document.getElementById("btn-enviar").style.display = "none";
 }
 
 var novoBloco = function(nQuestao, contador){
@@ -125,8 +149,8 @@ var novoBloco = function(nQuestao, contador){
 
 }
 
-let blocoForm = function(nQuestao, contador){
-    if(nQuestao == 1 || nQuestao == 2 || nQuestao == 7){
+var blocoForm = function(nQuestao, contador){
+    if(nQuestao == 1 || nQuestao == 2 || nQuestao == 7){ // QUESTÃO 1,2,7
         return('<div class="input-field col s12 m12 l6">\
                     <textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea"></textarea>\
                     <label for="r'+nQuestao+'descricao'+contador+'">Descrição detalhada</label>\
@@ -136,7 +160,7 @@ let blocoForm = function(nQuestao, contador){
                     <label for="r'+nQuestao+'justificativa'+contador+'">Justificativa da necessidade</label>\
                 </div>\
         ');
-    } else if (nQuestao == 3){
+    } else if (nQuestao == 3){ // QUESTÃO 3
         let result = '  <div class="row">\
                             <div class="input-field col s12 m12 l6">\
                                 <select name="r'+nQuestao+'sistema'+contador+'">\
@@ -160,12 +184,11 @@ let blocoForm = function(nQuestao, contador){
                             </div>\
                         </div>\
         ');
-    } else if(nQuestao == 4 || nQuestao == 5 || nQuestao == 6){
+    } else if(nQuestao == 4 || nQuestao == 5 || nQuestao == 6){ // QUESTÃO 4,5,6
         let itens = [];
-        if(nQuestao == 4) itens = sistemas;
-        else if(nQuestao == 5) itens = servicos;
-        else itens = equipamentos;
-
+        if(nQuestao == 4)       itens = sistemas;
+        else if(nQuestao == 5)  itens = servicos;
+        else                    itens = equipamentos;
         let result = '';
         let nGrupos = 0;
         itens.forEach((s) => {
@@ -180,14 +203,14 @@ let blocoForm = function(nQuestao, contador){
                 }else if(radioNum == 6){
                     aux = aux + '<div class="col s2 m2 l1">\
                                     <label>\
-                                        <input value="não uso" class="radio-form" name="r' + nQuestao + 'Grupo' + nGrupos + '" type="radio"/>\
+                                        <input value="' + radioNum + '" class="radio-form" name="r' + nQuestao + 'Grupo' + nGrupos + '" type="radio"/>\
                                         <span>Não uso</span>\
                                     </label>\
                                 </div>';
                 }else{
                     aux = aux + '<div class="col s3 m3 l2">\
                                     <label>\
-                                        <input value="não conheço" class="radio-form" name="r' + nQuestao + 'Grupo' + nGrupos + '" type="radio"/>\
+                                        <input value="' + radioNum + '" class="radio-form" name="r' + nQuestao + 'Grupo' + nGrupos + '" type="radio"/>\
                                         <span>Não conheço</span>\
                                     </label>\
                                 </div>';
@@ -197,10 +220,10 @@ let blocoForm = function(nQuestao, contador){
             nGrupos = nGrupos + 1;
         });
         return result;
-    } else {
+    } else { // QUESTÃO 8
         return ('   <div class="input-field col s12 m12 l6 xl4">\
-                        <textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea"></textarea>\
-                        <label for="r'+nQuestao+'descricao'+contador+'">Necessidade</label>\
+                        <textarea id="r'+nQuestao+'necessidade'+contador+'" class="materialize-textarea"></textarea>\
+                        <label for="r'+nQuestao+'necessidade'+contador+'">Necessidade</label>\
                     </div>\
                     <div class="input-field col s12 m12 l6 xl4">\
                         <textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea"></textarea>\
