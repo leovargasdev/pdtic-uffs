@@ -1,0 +1,20 @@
+.btn-nova-resposta a{
+    font-size: 14px;
+}
+#questoes-tela-1, #questoes-tela-2, #questoes-tela-3, #questoes-tela-4, #btn-enviar{
+    display: none;
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (max-width: 991px) {
+    .btn-nova-resposta a{
+        font-size: 13px;
+    }
+}
+
+/* Landscape phones and down */
+@media (max-width: 767px) {
+    .btn-nova-resposta a{
+        font-size: 12px;
+    }
+}

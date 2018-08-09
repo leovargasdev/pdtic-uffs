@@ -7,7 +7,7 @@
         <!-- FORMULARIO -->
         <form class="formulario-uffs col s12 m8 offset-m2">
             <!-- TELA 1 -->
-            <div class="row">
+            <div id="questoes-tela-1" class="row">
                 <!-- QUESTÃO 1 -->
                 <div class="col s12 m12">
                     <p>1) Indique a necessidade de informações(Ex: Relatórios, Consultas, Registtros), considerando as necessidades do seu setor.</p>
@@ -17,11 +17,10 @@
 
                     </div>
                     <!-- BOTÃO NOVO CAMPO -->
-                    <div class="col m2 offset-m10">
-                        <a id="nova-resposta-q1" class="btn waves-effect waves-light" title="Novo campo"><i class="fa fa-plus"></i></a>
+                    <div class="btn-nova-resposta col s12 m4 offset-m8">
+                        <a id="nova-resposta-q1" class="waves-effect waves-light btn teal darken-4">Nova Resposta</a>
                     </div>
                 </div>
-
                 <!-- QUESTÃO 2 -->
                 <div class="col s12 m12">
                     <p>2) Indique processos que você considera que devem ser informatizados e/ou automatizados.</p>
@@ -31,11 +30,10 @@
 
                     </div>
                     <!-- BOTÃO NOVO CAMPO -->
-                    <div class="col m2 offset-m10">
-                        <a id="nova-resposta-q2" class="btn waves-effect waves-light" title="Novo campo"><i class="fa fa-plus"></i></a>
+                    <div class="btn-nova-resposta col s12 m4 offset-m8">
+                        <a id="nova-resposta-q2" class="waves-effect waves-light btn teal darken-4">Nova Resposta</a>
                     </div>
                 </div>
-
                 <!-- QUESTÃO 3 -->
                 <div class="col s12 m12">
                     <p>3) Indique a necessidade de novas funcionalidade em sistemas da UFFS.</p>
@@ -45,21 +43,21 @@
 
                     </div>
                     <!-- BOTÃO NOVO CAMPO -->
-                    <div class="col m2 offset-m10">
-                        <a id="nova-resposta-q3" class="btn waves-effect waves-light" title="Novo campo"><i class="fa fa-plus"></i></a>
+                    <div class="btn-nova-resposta col s12 m4 offset-m8">
+                        <a id="nova-resposta-q3" class="waves-effect waves-light btn teal darken-4">Nova Resposta</a>
                     </div>
                 </div>
             </div>
             <!-- TELA 2 -->
-            <div class="row">
+            <div id="questoes-tela-2" class="row">
                 <!-- QUESTÃO 4 -->
                 <div class="col s12 m12">
-                    <p>4) Avalie a qualidade dos serviços de TI da UFFS(
-                        [1] Ruim,
-                        [2] Razoável,
-                        [3] Médio,
-                        [4] Satisfatório,
-                        [5] Ótimo).</p>
+                    <p>4) Avalie a qualidade dos sistemas da UFFS(
+                        [1] Ruim
+                        [2] Razoável
+                        [3] Médio
+                        [4] Satisfatório
+                        [5] Ótimo ).</p>
                     <br />
                     <div id="resposta-q4">
 
@@ -68,13 +66,87 @@
                     </div>
                 </div>
             </div>
+            <!-- TELA 3 -->
+            <div id="questoes-tela-3" class="row">
+                <!-- QUESTÃO 5 -->
+                <div class="col s12 m12">
+                    <p>5) Avalie a qualidade dos serviços de TI da UFFS(
+                        [1] Ruim
+                        [2] Razoável
+                        [3] Médio
+                        [4] Satisfatório
+                        [5] Ótimo ).</p>
+                    <br />
+                    <div id="resposta-q5">
 
+                        <!-- INSERT AQUI !! -->
+
+                    </div>
+                </div>
+                <!-- QUESTÃO 6 -->
+                <div class="col s12 m12">
+                    <p>6) Avalie a qualidade dos equipamentos da UFFS(
+                        [1] Ruim
+                        [2] Razoável
+                        [3] Médio
+                        [4] Satisfatório
+                        [5] Ótimo ).</p>
+                    <br />
+                    <div id="resposta-q6">
+
+                        <!-- INSERT AQUI !! -->
+
+                    </div>
+                </div>
+            </div>
+            <!-- TELA 4 -->
+            <div id="questoes-tela-4" class="row">
+                <!-- QUESTÃO 7 -->
+                <div class="col s12 m12">
+                    <p>7) Indique a necessidade de novos serviços de TI.</p>
+                    <div id="resposta-q7">
+
+                        <!-- INSERT AQUI !! -->
+
+                    </div>
+                    <!-- BOTÃO NOVO CAMPO -->
+                    <div class="btn-nova-resposta col s12 m4 offset-m8">
+                        <a id="nova-resposta-q7" class="waves-effect waves-light btn teal darken-4">Nova Resposta</a>
+                    </div>
+                </div>
+                <!-- QUESTÃO 8 -->
+                <div class="col s12 m12">
+                    <p>8) Indique novas necessidades de infraestrutura de TI.</p>
+                    <div id="resposta-q8">
+
+                        <!-- INSERT AQUI !! -->
+
+                    </div>
+                    <!-- BOTÃO NOVO CAMPO -->
+                    <div class="btn-nova-resposta col s12 m4 offset-m8">
+                        <a id="nova-resposta-q8" class="waves-effect waves-light btn teal darken-4">Nova Resposta</a>
+                    </div>
+                </div>
+            </div>
             <!-- BOTÃO ENVIAR -->
-            <div class="row">
+            <div id="btn-enviar" class="row">
                 <button class="btn waves-effect waves-light" type="submit" name="action">
                     ENVIAR
                 </button>
             </div>
         </form>
+        <!-- BOTÕES DE NAVEGAÇÃO DO FORM -->
+        <div class="row">
+            <div class="col m3 offset-m3">
+                <center>
+                    <a id="btn-volta-cadastro" class="waves-effect waves-light btn brown darken-2">VOLTA</a>
+                </center>
+            </div>
+            <div class="col m3">
+                <center>
+                    <a id="btn-avanca-cadastro" class="waves-effect waves-light btn brown darken-2">PROXIMO</a>
+                </center>
+            </div>
+        </div>
     </div>
 </template>
