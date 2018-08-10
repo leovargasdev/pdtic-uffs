@@ -1,6 +1,11 @@
 .btn-nova-resposta a{
     font-size: 14px;
 }
+.divisor-respostas{
+    width: 100%;
+    height: 5px;
+    background-color: black;
+}
 #questoes-tela-1, #questoes-tela-2, #questoes-tela-3, #questoes-tela-4, #btn-enviar{
     display: none;
 }

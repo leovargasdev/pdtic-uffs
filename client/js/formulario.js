@@ -84,11 +84,11 @@ Template.formulario.events({
     'submit .formulario-uffs': function(){
         let respostas = {}
         let papel = event.target.papelUFFS.value;
-        let turno = event.target.turnoUFFS.value;
+        let campus = event.target.camposUFFS.value;
         for(let question = 1; question < 9; question++)
             respostas[question] = obterRespostas(question, event.target);
         console.log(respostas);
-        Meteor.call('novaResposta', papel, turno, respostas);
+        Meteor.call('novaResposta', papel, campus, respostas);
         // return false;
     }
 })
@@ -134,10 +134,17 @@ var renderizaTela = function(tela){
         else
             document.getElementById("questoes-tela-" + t).style.display = "none";
     }
-    // if(tela == 4)
+    if(tela == 4){
         document.getElementById("btn-enviar").style.display = "block";
-    // else
-    //     document.getElementById("btn-enviar").style.display = "none";
+        document.getElementById("btn-avanca-cadastro").style.display = "none";
+    }else{
+        if(tela == 0)
+            document.getElementById("btn-volta-cadastro").style.display = "none";
+        else
+            document.getElementById("btn-volta-cadastro").style.display = "block";
+        document.getElementById("btn-avanca-cadastro").style.display = "block";
+        document.getElementById("btn-enviar").style.display = "none";
+    }
 }
 
 var novoBloco = function(nQuestao, contador, notificacao){
@@ -150,7 +157,7 @@ var novoBloco = function(nQuestao, contador, notificacao){
     const block_to_insert = document.createElement('div');
     block_to_insert.innerHTML = blocoForm(nQuestao, contador);
     mDiv.appendChild( block_to_insert );
-
+    mDiv.appendChild( document.createElement('br') );
 }
 
 var blocoForm = function(nQuestao, contador){
