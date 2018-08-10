@@ -89,6 +89,7 @@ Template.formulario.events({
         for(let question = 1; question < 9; question++)
             respostas[question] = obterRespostas(question, event.target);
         Meteor.call('novaResposta', papel, campus, respostas);
+        Router.go("/");
     }
 })
 

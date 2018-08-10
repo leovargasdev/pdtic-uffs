@@ -6,6 +6,17 @@
     height: 5px;
     background-color: black;
 }
+/* FORM com radio button */
+.questao-radio label span{
+    font-size: 15px;
+    color: #656565;
+    padding-left: 2px;
+}
+.radio-form{
+    position: inherit !important;
+    opacity: 1 !important;
+}
+
 #questoes-tela-1, #questoes-tela-2, #questoes-tela-3, #questoes-tela-4, #btn-enviar{
     display: none;
 }

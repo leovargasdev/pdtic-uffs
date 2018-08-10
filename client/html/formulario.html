@@ -1,8 +1,11 @@
 <template name="formulario">
     <div class="row">
-        <div class="col m12">
-            <a href="/respostas" class="waves-effect waves-light btn brown darken-2">respostas</a>
-        </div>
+        {{#if currentUser}}
+            <div class="col m12">
+                <a href="/respostas" class="waves-effect waves-light btn brown darken-2">respostas</a>
+            </div>
+        {{else}}
+        {{/if}}
         <center>
             <h2>Necessidades de TI</h2>
             <div class="divider"></div>
