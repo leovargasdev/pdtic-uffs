@@ -39,35 +39,36 @@ var contadores;
 var telaCadastro;
 Template.formulario.onRendered(function() {
     contadores = {1: 0, 2: 0, 3: 0, 7: 0, 8: 0};
-    novoBloco(4, 0, false); // QUESTÃO 4
-    novoBloco(5, 0, false); // QUESTÃO 5
-    novoBloco(6, 0, false); // QUESTÃO 6
+    novoBloco(4, false); // QUESTÃO 4
+    novoBloco(5, false); // QUESTÃO 5
+    novoBloco(6, false); // QUESTÃO 6
     telaCadastro = 0;
     renderizaTela(telaCadastro);
     $('select').material_select();
+    $("#btn-nova-resposta-q1").text("Responder");
+    $("#btn-nova-resposta-q2").text("Responder");
+    $("#btn-nova-resposta-q3").text("Responder");
+    $("#btn-nova-resposta-q7").text("Responder");
+    $("#btn-nova-resposta-q8").text("Responder");
 });
 
 Template.formulario.events({
     'click #nova-resposta-q1': function(event){
-        novoBloco(1, contadores['1'], true);
-        contadores['1'] = contadores['1'] + 1;
+        novoBloco(1, true);
     },
     'click #nova-resposta-q2': function(event){
-        novoBloco(2, contadores['2'], true);
-        contadores['2'] = contadores['2'] + 1;
+        novoBloco(2, true);
     },
     'click #nova-resposta-q3': function(event){
-        novoBloco(3, contadores['3'], true);
+        novoBloco(3, true);
         $('select').material_select();
-        contadores['3'] = contadores['3'] + 1;
     },
     'click #nova-resposta-q7': function(event){
-        novoBloco(7, contadores['7'], true);
-        contadores['7'] = contadores['7'] + 1;
+        novoBloco(7, true);
     },
     'click #nova-resposta-q8': function(event){
-        novoBloco(8, contadores['8'], true);
-        contadores['8'] = contadores['8'] + 1;
+        novoBloco(8, true);
+
     },
     'click #btn-avanca-cadastro': function(event){
         if(telaCadastro < 4){
@@ -87,9 +88,7 @@ Template.formulario.events({
         let campus = event.target.camposUFFS.value;
         for(let question = 1; question < 9; question++)
             respostas[question] = obterRespostas(question, event.target);
-        console.log(respostas);
         Meteor.call('novaResposta', papel, campus, respostas);
-        // return false;
     }
 })
 
@@ -147,20 +146,25 @@ var renderizaTela = function(tela){
     }
 }
 
-var novoBloco = function(nQuestao, contador, notificacao){
+var novoBloco = function(nQuestao, qIncremental){ // nQuestao = nº da questão, qIncremental = questões que pode-se incrementar várias respostas, caso ela for desse tipo tem um contador e a opção de notificação é habilitada
     let divResposta = "resposta-q" + nQuestao;
-
-    if(notificacao)
-        Bert.alert("Nova resposta na questão ["+nQuestao+"]", "info", "growl-top-left");
 
     let mDiv = document.getElementById(divResposta);
     const block_to_insert = document.createElement('div');
-    block_to_insert.innerHTML = blocoForm(nQuestao, contador);
+    block_to_insert.innerHTML = blocoForm(nQuestao);
     mDiv.appendChild( block_to_insert );
     mDiv.appendChild( document.createElement('br') );
+
+    if(qIncremental){
+        if(!contadores[nQuestao]) // Quando inserir um novo bloco, muda-se o rótulo do botão
+            $("#btn-nova-resposta-q" + nQuestao).text("Nova Resposta");
+        contadores[nQuestao] = contadores[nQuestao] + 1; // Incrementa-se o contador de input's de resposta da questão clicada
+        Bert.alert("Nova resposta na questão ["+nQuestao+"]", "info", "growl-top-left");
+    }
 }
 
-var blocoForm = function(nQuestao, contador){
+var blocoForm = function(nQuestao){
+    let contador = contadores[nQuestao]
     if(nQuestao == 1 || nQuestao == 2 || nQuestao == 7){ // QUESTÃO 1,2,7
         return('<div class="input-field col s12 m12 l6">\
                     <textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea"></textarea>\
@@ -180,7 +184,6 @@ var blocoForm = function(nQuestao, contador){
             let opt =              '<option value="' + s['valor'] + '">' + s['valor'] + '</option>';
             result = result + opt;
         });
-
         return(result +         '</select><label for="r'+nQuestao+'sistema'+contador+'">Selecionar o Sistema</label>\
                             </div>\
                         </div>\
