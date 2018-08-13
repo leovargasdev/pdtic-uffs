@@ -1,3 +1,13 @@
+body{
+    font-family: 'Rubik', sans-serif;
+}
+.formulario-uffs{
+    margin-bottom: 40px;
+}
+.titulo-questao{
+    font-size: 18px;
+}
+
 .btn-nova-resposta a{
     font-size: 14px;
 }
@@ -7,14 +17,12 @@
     background-color: black;
 }
 /* FORM com radio button */
-.questao-radio label span{
-    font-size: 15px;
-    color: #656565;
-    padding-left: 2px;
-}
 .radio-form{
     position: inherit !important;
     opacity: 1 !important;
+}
+#btn-enviar{
+    margin-bottom: 50px;
 }
 
 #questoes-tela-1, #questoes-tela-2, #questoes-tela-3, #questoes-tela-4, #btn-enviar{
@@ -30,7 +38,16 @@
 
 /* Landscape phones and down */
 @media (max-width: 767px) {
+    .formulario-uffs{
+        margin-bottom: 20px;
+    }
     .btn-nova-resposta a{
         font-size: 12px;
+    }
+    .titulo-questao{
+        font-size: 14px;
+    }
+    h2{
+        font-size: 32px;
     }
 }

@@ -19,10 +19,10 @@
                     <h3>Indentifique-se:</h3>
                     <div class="row">
                         <!-- PAPEL -->
-                        <div class="col s2 m2 l1 offset-l2">
+                        <div class="col s5 m4 l1 offset-l2">
                             <h5 style="margin-top:25px;">Entidade:</h5>
                         </div>
-                        <div class="input-field col s10 m10 l2 offset-l1">
+                        <div class="input-field col s7 m8 l2 offset-l1">
                             <select name="papelUFFS">
                                 <option value="aluno">Aluno</option>
                                 <option value="professor">Professor</option>
@@ -32,10 +32,10 @@
                     </div>
                     <div class="row">
                         <!-- CAMPUS -->
-                        <div class="col s2 m2 l1 offset-l2">
+                        <div class="col s5 m4 l1 offset-l2">
                             <h5 style="margin-top:25px;">Campus:</h5>
                         </div>
-                        <div class="input-field col s10 m10 l3 offset-l1">
+                        <div class="input-field col s7 m8 l3 offset-l1">
                             <select name="camposUFFS">
                                 <option value="cerroLargo">Cerro Largo</option>
                                 <option value="chapeco">Chapecó</option>
@@ -53,7 +53,9 @@
             <div id="questoes-tela-1" class="row">
                 <!-- QUESTÃO 1 -->
                 <div class="col s12 m12">
-                    <p>1) Indique a necessidade de informações(Ex: Relatórios, Consultas, Registtros), considerando as necessidades do seu setor.</p>
+                    <p class="titulo-questao">
+                        1) Indique a necessidade de informações(Ex: Relatórios, Consultas, Registtros), considerando as necessidades do seu setor.
+                    </p>
                     <div id="resposta-q1">
 
                         <!-- INSERT AQUI !! -->
@@ -68,7 +70,9 @@
                 </div>
                 <!-- QUESTÃO 2 -->
                 <div class="col s12 m12">
-                    <p>2) Indique processos que você considera que devem ser informatizados e/ou automatizados.</p>
+                    <p class="titulo-questao">
+                        2) Indique processos que você considera que devem ser informatizados e/ou automatizados.
+                    </p>
                     <div id="resposta-q2">
 
                         <!-- INSERT AQUI !! -->
@@ -83,7 +87,9 @@
                 </div>
                 <!-- QUESTÃO 3 -->
                 <div class="col s12 m12">
-                    <p>3) Indique a necessidade de novas funcionalidade em sistemas da UFFS.</p>
+                    <p class="titulo-questao">
+                        3) Indique a necessidade de novas funcionalidade em sistemas da UFFS.
+                    </p>
                     <div id="resposta-q3">
 
                         <!-- INSERT AQUI !! -->
@@ -101,12 +107,14 @@
             <div id="questoes-tela-2" class="row">
                 <!-- QUESTÃO 4 -->
                 <div class="col s12 m12">
-                    <p>4) Avalie a qualidade dos sistemas da UFFS(
+                    <p class="titulo-questao">
+                        4) Avalie a qualidade dos sistemas da UFFS(
                         [1] Ruim
                         [2] Razoável
                         [3] Médio
                         [4] Satisfatório
-                        [5] Ótimo ).</p>
+                        [5] Ótimo ).
+                    </p>
                     <br />
                     <div id="resposta-q4">
 
@@ -119,12 +127,14 @@
             <div id="questoes-tela-3" class="row">
                 <!-- QUESTÃO 5 -->
                 <div class="col s12 m12">
-                    <p>5) Avalie a qualidade dos serviços de TI da UFFS(
+                    <p class="titulo-questao">
+                        5) Avalie a qualidade dos serviços de TI da UFFS(
                         [1] Ruim
                         [2] Razoável
                         [3] Médio
                         [4] Satisfatório
-                        [5] Ótimo ).</p>
+                        [5] Ótimo ).
+                    </p>
                     <br />
                     <div id="resposta-q5">
 
@@ -134,12 +144,14 @@
                 </div>
                 <!-- QUESTÃO 6 -->
                 <div class="col s12 m12">
-                    <p>6) Avalie a qualidade dos equipamentos da UFFS(
+                    <p class="titulo-questao">
+                        6) Avalie a qualidade dos equipamentos da UFFS(
                         [1] Ruim
                         [2] Razoável
                         [3] Médio
                         [4] Satisfatório
-                        [5] Ótimo ).</p>
+                        [5] Ótimo ).
+                    </p>
                     <br />
                     <div id="resposta-q6">
 
@@ -152,7 +164,9 @@
             <div id="questoes-tela-4" class="row">
                 <!-- QUESTÃO 7 -->
                 <div class="col s12 m12">
-                    <p>7) Indique a necessidade de novos serviços de TI.</p>
+                    <p class="titulo-questao">
+                        7) Indique a necessidade de novos serviços de TI.
+                    </p>
                     <div id="resposta-q7">
 
                         <!-- INSERT AQUI !! -->
@@ -167,7 +181,9 @@
                 </div>
                 <!-- QUESTÃO 8 -->
                 <div class="col s12 m12">
-                    <p>8) Indique novas necessidades de infraestrutura de TI.</p>
+                    <p class="titulo-questao">
+                        8) Indique novas necessidades de infraestrutura de TI.
+                    </p>
                     <div id="resposta-q8">
 
                         <!-- INSERT AQUI !! -->
@@ -183,18 +199,20 @@
             </div>
             <!-- BOTÃO ENVIAR -->
             <div id="btn-enviar" class="row">
-                <button class="btn waves-effect waves-light" type="submit" name="action">
-                    ENVIAR
-                </button>
+                <div class="col s6 offset-s3 m6 offset-m3 l4 offset-l4">
+                    <button style="width:100%" class="btn-large waves-effect waves-light" type="submit" name="action">
+                        ENVIAR
+                    </button>
+                </div>
             </div>
         </form>
         <!-- BOTÕES DE NAVEGAÇÃO DO FORM -->
         <div class="row">
-            <div class="col m12">
-                <div class="col m1 offset-m4">
+            <div class="col s12 m12">
+                <div class="col s6 m4 offset-m2 l2 offset-l4">
                     <a id="btn-volta-cadastro" class="waves-effect waves-light btn brown darken-2">VOLTA</a>
                 </div>
-                <div class="col m1 offset-m1">
+                <div class="col s6 m4 l2">
                     <a id="btn-avanca-cadastro" class="waves-effect waves-light btn brown darken-2">PROXIMO</a>
             </div>
                 </div>

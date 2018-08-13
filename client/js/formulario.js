@@ -207,7 +207,7 @@ var blocoForm = function(nQuestao){
         let result = '';
         let nGrupos = 0;
         itens.forEach((s) => {
-            let aux = '<div class="row"><div class="col s12 m12 l4"><b>' + s['valor'] + ': </b></div>';
+            let aux = '<div class="row"><div class="col s12 m12 l3"><b>' + s['valor'] + ': </b></div>';
             for(let radioNum = 1; radioNum < 8; radioNum++){
                 if(radioNum < 6){
                     aux = aux + '<div class="col s1 m1 l1">\
@@ -216,14 +216,14 @@ var blocoForm = function(nQuestao){
                                     </label>\
                                 </div>';
                 }else if(radioNum == 6){
-                    aux = aux + '<div class="col s2 m2 l1">\
+                    aux = aux + '<div class="col s3 m3 l2">\
                                     <label>\
                                         <input value="' + radioNum + '" class="radio-form" name="r' + nQuestao + 'Grupo' + nGrupos + '" type="radio"/>\
                                         <span>Não uso</span>\
                                     </label>\
                                 </div>';
                 }else{
-                    aux = aux + '<div class="col s3 m3 l2">\
+                    aux = aux + '<div class="col s4 m4 l2">\
                                     <label>\
                                         <input value="' + radioNum + '" class="radio-form" name="r' + nQuestao + 'Grupo' + nGrupos + '" type="radio"/>\
                                         <span>Não conheço</span>\
