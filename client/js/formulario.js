@@ -74,22 +74,27 @@ Template.formulario.events({
         if(telaCadastro < 4){
             telaCadastro = telaCadastro + 1;
             renderizaTela(telaCadastro);
+            jQuery('html, body').animate({scrollTop: 0}, 500);
         }
     },
     'click #btn-volta-cadastro': function(event){
         if(telaCadastro > 0){
             telaCadastro = telaCadastro - 1;
             renderizaTela(telaCadastro);
+            jQuery('html, body').animate({scrollTop: 0}, 500);
         }
     },
     'submit .formulario-uffs': function(){
         let respostas = {}
         let papel = event.target.papelUFFS.value;
         let campus = event.target.camposUFFS.value;
-        for(let question = 1; question < 9; question++)
-            respostas[question] = obterRespostas(question, event.target);
-        Meteor.call('novaResposta', papel, campus, respostas);
-        Router.go("/");
+        if(isNotEmpty(papel, "p") && isNotEmpty(campus, "c")){
+            for(let question = 1; question < 9; question++)
+                respostas[question] = obterRespostas(question, event.target);
+            Meteor.call('novaResposta', papel, campus, respostas);
+            Router.go("/obrigado");
+        }
+        return false;
     }
 })
 
@@ -251,3 +256,15 @@ var blocoForm = function(nQuestao){
         ');
     }
 }
+
+var isNotEmpty = function(valor, tipo){
+    let alerta = "";
+    if(tipo == "p") alerta = "Entidade";
+    else if(tipo == "c") alerta = "Campus";
+
+    if(valor && valor !== '') // Não está vazio
+        return true;
+
+    Bert.alert("Campo obrigatório: [" + alerta + "] não foi preenchido", "danger", "growl-top-right");
+    return false;
+};

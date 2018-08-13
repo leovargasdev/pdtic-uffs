@@ -1,7 +1,9 @@
 <template name="respostas">
-    {{#each res}}
-        <p>perdi</p>
-    {{else}}
-        <h3>Base vazia</h3>
+    {{#each aux}}
+        <div class="row">
+            <p>
+                [Resposta {{numero}}] <b>Cargo: </b>{{cargo}}, <b>Campus: </b>{{campus}}
+            </p>
+        </div>
     {{/each}}
 </template>
