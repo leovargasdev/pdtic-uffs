@@ -70,7 +70,19 @@ Template.formulario.events({
         novoBloco(8, true);
 
     },
-    'click #btn-avanca-cadastro': function(event){
+    'click #btn-avanca-cadastro': function(){
+        let perfil = $("#selectPerfil").val();
+        let campus = $("#selectCampus").val();
+        let menssagemAlert = "";
+        if(telaCadastro == 0){
+            if(!perfil && !campus)    menssagemAlert = "Perfil e Campus";
+            else if(!perfil)               menssagemAlert = "Perfil";
+            else if(!campus)               menssagemAlert = "Campus";
+            if(menssagemAlert !== ""){
+                Bert.alert("Campo obrigatório: [" + menssagemAlert + "] não foi preenchido", "danger", "growl-top-right");
+                return false;
+            }
+        }
         if(telaCadastro < 4){
             telaCadastro = telaCadastro + 1;
             renderizaTela(telaCadastro);
@@ -86,7 +98,7 @@ Template.formulario.events({
     },
     'submit .formulario-uffs': function(){
         let respostas = {}
-        let papel = event.target.papelUFFS.value;
+        let papel = event.target.perfilUFFS.value;
         let campus = event.target.camposUFFS.value;
         if(isNotEmpty(papel, "p") && isNotEmpty(campus, "c")){
             for(let question = 1; question < 9; question++)
@@ -95,7 +107,17 @@ Template.formulario.events({
             Router.go("/obrigado");
         }
         return false;
-    }
+    },
+    "click #encerrar-sesao": function(event){
+        Meteor.logout(function(err){
+            if(err){
+                Bert.alert(err.reason, "danger", "growl-top-right");
+            }else{
+                Bert.alert("Saiu de boas", "success", "growl-top-right");
+                Router.go('/');
+            }
+        });
+    },
 })
 
 var obterRespostas = function(nResposta, campo){

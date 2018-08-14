@@ -3,6 +3,7 @@
         {{#if currentUser}}
             <div class="col m12">
                 <a href="/respostas" class="waves-effect waves-light btn brown darken-2">respostas</a>
+                <a id="encerrar-sesao" class="waves-effect waves-light btn red darken-2">sair</a>
             </div>
         {{else}}
         {{/if}}
@@ -20,10 +21,10 @@
                     <div class="row">
                         <!-- PAPEL -->
                         <div class="col s5 m4 l1 offset-l2">
-                            <h5 style="margin-top:25px;">Entidade:</h5>
+                            <h5 style="margin-top:25px;">Perfil:</h5>
                         </div>
                         <div class="input-field col s7 m8 l2 offset-l1">
-                            <select name="papelUFFS">
+                            <select name="perfilUFFS" id="selectPerfil">
                                 <option value="" disabled selected>selecionar</option>
                                 <option value="aluno">Aluno</option>
                                 <option value="professor">Professor</option>
@@ -37,7 +38,7 @@
                             <h5 style="margin-top:25px;">Campus:</h5>
                         </div>
                         <div class="input-field col s7 m8 l3 offset-l1">
-                            <select name="camposUFFS">
+                            <select name="camposUFFS" id="selectCampus">
                                 <option value="" disabled selected>selecionar</option>
                                 <option value="cerroLargo">Cerro Largo</option>
                                 <option value="chapeco">Chapecó</option>
@@ -56,7 +57,7 @@
                 <!-- QUESTÃO 1 -->
                 <div class="col s12 m12">
                     <p class="titulo-questao">
-                        1) Indique a necessidade de informações(Ex: Relatórios, Consultas, Registtros), considerando as necessidades do seu setor.
+                        1) Indique a necessidade de informações(Ex: Relatórios, Consultas, Registros), considerando as necessidades do seu setor.
                     </p>
                     <div id="resposta-q1">
 
