@@ -7,7 +7,6 @@ body{
 .titulo-questao{
     font-size: 18px;
 }
-
 .btn-nova-resposta a{
     font-size: 14px;
 }
@@ -15,6 +14,12 @@ body{
     width: 100%;
     height: 5px;
     background-color: black;
+}
+.form-radios-desktop{
+    display: block;
+}
+.form-radios-mobile{
+    display: none;
 }
 /* FORM com radio button */
 .radio-form{
@@ -30,9 +35,15 @@ body{
 }
 
 /* Portrait tablet to landscape and desktop */
-@media (max-width: 991px) {
+@media (max-width: 992px) {
     .btn-nova-resposta a{
         font-size: 13px;
+    }
+    .form-radios-mobile{
+        display: block;
+    }
+    .form-radios-desktop{
+        display: none;
     }
 }
 

@@ -233,30 +233,31 @@ var blocoForm = function(nQuestao){
         else                    itens = equipamentos;
         let result = '';
         let nGrupos = 0;
+        const rRadios = {1: 1, 2: 2, 3: 3, 4: 4, 5: 6, 6: 'NU', 7: 'NC'};
+        const classLabel = {4:'col s12 m12 l5', 5:'col s5 m4 l5', 6: 'col s5 m4 l5'};
+        // Rotúlo valores radio button
+        result = '  <center class="form-radios-desktop">\
+                        <div class="row">\
+                            <div class="col l1 offset-l5">' + rRadios[1] + '</div>\
+                            <div class="col l1">' + rRadios[2] + '</div>\
+                            <div class="col l1">' + rRadios[3] + '</div>\
+                            <div class="col l1">' + rRadios[4] + '</div>\
+                            <div class="col l1">' + rRadios[5] + '</div>\
+                            <div class="col l1">' + rRadios[6] + '</div>\
+                            <div class="col l1">' + rRadios[7] + '</div>\
+                        </div>\
+                    </center>';
         itens.forEach((s) => {
-            let aux = '<div class="row"><div class="col s12 m12 l3"><b>' + s['valor'] + ': </b></div>';
+            let aux = '<div class="row"><div class="' + classLabel[nQuestao] + '"><b>' + s['valor'] + ': </b></div>';
             for(let radioNum = 1; radioNum < 8; radioNum++){
-                if(radioNum < 6){
-                    aux = aux + '<div class="col s1 m1 l1">\
-                                    <label><input value="' + radioNum + '" class="radio-form" name="r' + nQuestao + 'Grupo' + nGrupos + '" type="radio"/>\
-                                        <span>' + radioNum + '</span>\
-                                    </label>\
-                                </div>';
-                }else if(radioNum == 6){
-                    aux = aux + '<div class="col s3 m3 l2">\
+                aux = aux + '<center>\
+                                <div class="col s1 m1 l1">\
                                     <label>\
                                         <input value="' + radioNum + '" class="radio-form" name="r' + nQuestao + 'Grupo' + nGrupos + '" type="radio"/>\
-                                        <span>Não uso</span>\
+                                        <span class="form-radios-mobile">' + rRadios[radioNum] + '</span>\
                                     </label>\
-                                </div>';
-                }else{
-                    aux = aux + '<div class="col s4 m4 l2">\
-                                    <label>\
-                                        <input value="' + radioNum + '" class="radio-form" name="r' + nQuestao + 'Grupo' + nGrupos + '" type="radio"/>\
-                                        <span>Não conheço</span>\
-                                    </label>\
-                                </div>';
-                }
+                                </div>\
+                            </center>';
             }
             result = result + aux + '</div>';
             nGrupos = nGrupos + 1;
