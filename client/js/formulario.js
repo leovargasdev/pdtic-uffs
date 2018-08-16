@@ -20,6 +20,35 @@ var sistemas = [
     { valor: 'Sistema de Compras e Licitações - SCL' },
     { valor: 'Sistema de Gestão Financeira e Contratos - SGF' }
 ];
+// Essa localização eh para Estudante, docente e tecnicos.
+var localizacaoGeral = [
+    { loc: 'Campus Cerro Largo – RS' },
+    { loc: 'Campus Chapecó – SC' },
+    { loc: 'Campus Erechim – RS' },
+    { loc: 'Campus Laranjeiras do Sul – PR' },
+    { loc: 'Campus Realeza – PR' },
+    { loc: 'Campus Passo Fundo - RS' }
+];
+// Essa localização eh somente para tecnicos.
+var localizacaoTec = [
+    { loc: 'Gabinete do Reitor' },
+    { loc: 'Auditoria Interna' },
+    { loc: 'Procuradoria Federal' },
+    { loc: 'Procuradoria Educacional Institucional' },
+    { loc: 'Assessoria para Assuntos Internacionais' },
+    { loc: 'Diretoria de Comunicação' },
+    { loc: 'Ouvidoria' },
+    { loc: 'Pró-Reitoria de Graduação' },
+    { loc: 'Pró-Reitoria de Pesquisa e Pós-Graduação' },
+    { loc: 'Pró-Reitoria de Extensão e Cultura' },
+    { loc: 'Pró-Reitoria de Administração e Infraestrutura' },
+    { loc: 'Pró-Reitoria de Planejamento' },
+    { loc: 'Pró-Reitoria de Assuntos Estudantis' },
+    { loc: 'Pró-Reitoria de Gestão de Pessoas' },
+    { loc: 'Secretaria Especial de Laboratórios' },
+    { loc: 'Secretaria Especial de Obras' },
+    { loc: 'Secretaria Especial de Tecnologia e Informação' }
+];
 var servicos = [
     { valor: 'VPN' },
     { valor: 'Internet' },
@@ -53,6 +82,26 @@ Template.formulario.onRendered(function() {
 });
 
 Template.formulario.events({
+    'change #selectPerfil': function(event){
+        let perfil = $("#selectPerfil").val();
+        $('#selectLocalizacao').empty();
+        let selectLoc = document.getElementById("selectLocalizacao");
+        localizacaoGeral.forEach((local) => {
+            let option = document.createElement("option");
+            option.text = local['loc'];
+            option.value = local['loc'];
+            selectLoc.add(option);
+        });
+        if(perfil == 'tecnico'){
+            localizacaoTec.forEach((local) => {
+                let option = document.createElement("option");
+                option.text = local['loc'];
+                option.value = local['loc'];
+                selectLoc.add(option);
+            });
+        }
+        $('select').material_select();
+    },
     'click #nova-resposta-q1': function(event){
         novoBloco(1, true);
     },
@@ -72,12 +121,12 @@ Template.formulario.events({
     },
     'click #btn-avanca-cadastro': function(){
         let perfil = $("#selectPerfil").val();
-        let campus = $("#selectCampus").val();
+        let localizacao = $("#selectLocalizacao").val();
         let menssagemAlert = "";
         if(telaCadastro == 0){
-            if(!perfil && !campus)    menssagemAlert = "Perfil e Campus";
+            if(!perfil && !localizacao)    menssagemAlert = "Perfil e Localização";
             else if(!perfil)               menssagemAlert = "Perfil";
-            else if(!campus)               menssagemAlert = "Campus";
+            else if(!localizacao)               menssagemAlert = "Localização";
             if(menssagemAlert !== ""){
                 Bert.alert("Campo obrigatório: [" + menssagemAlert + "] não foi preenchido", "danger", "growl-top-right");
                 return false;
@@ -98,12 +147,12 @@ Template.formulario.events({
     },
     'submit .formulario-uffs': function(){
         let respostas = {}
-        let papel = event.target.perfilUFFS.value;
-        let campus = event.target.camposUFFS.value;
-        if(isNotEmpty(papel, "p") && isNotEmpty(campus, "c")){
+        let perfil = event.target.perfilUFFS.value;
+        let localizacao = event.target.localizacaoUFFS.value;
+        if(isNotEmpty(perfil, "p") && isNotEmpty(localizacao, "c")){
             for(let question = 1; question < 9; question++)
                 respostas[question] = obterRespostas(question, event.target);
-            Meteor.call('novaResposta', papel, campus, respostas);
+            Meteor.call('novaResposta', perfil, localizacao, respostas);
             Router.go("/obrigado");
         }
         return false;

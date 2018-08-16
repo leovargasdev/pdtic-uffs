@@ -26,28 +26,25 @@
                         <div class="input-field col s7 m8 l2 offset-l1">
                             <select name="perfilUFFS" id="selectPerfil">
                                 <option value="" disabled selected>selecionar</option>
-                                <option value="aluno">Aluno</option>
-                                <option value="professor">Professor</option>
-                                <option value="servidor">Servidor</option>
+                                <option value="estudante">Estudante</option>
+                                <option value="docente">Docente</option>
+                                <option value="tecnico">Téc. Administrativo</option>
                             </select>
                         </div>
                     </div>
                     <div class="row">
                         <!-- CAMPUS -->
                         <div class="col s5 m4 l1 offset-l2">
-                            <h5 style="margin-top:25px;">Campus:</h5>
+                            <h5 style="margin-top:25px;">Localização:</h5>
                         </div>
-                        <div class="input-field col s7 m8 l3 offset-l1">
-                            <select name="camposUFFS" id="selectCampus">
+                        <div class="input-field col s7 m8 l4 offset-l1">
+                            <select name="localizacaoUFFS" id="selectLocalizacao">
                                 <option value="" disabled selected>selecionar</option>
-                                <option value="cerroLargo">Cerro Largo</option>
-                                <option value="chapeco">Chapecó</option>
-                                <option value="chapecoReitoria">Chapecó/Reitoria</option>
-                                <option value="erechim">Erechim</option>
-                                <option value="laranjeirasSul">Laranjeiras do Sul</option>
-                                <option value="passoFundo">Passo Fundo</option>
-                                <option value="realeza">Realeza</option>
+                                <!-- {{#each mSelect}}
+                                    <option value="">{{loc}}</option>
+                                {{/each}} -->
                             </select>
+                            <span id="auxSelect" style="display:none"></span>
                         </div>
                     </div>
                 </div>
