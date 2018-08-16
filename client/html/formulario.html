@@ -7,23 +7,46 @@
             </div>
         {{else}}
         {{/if}}
-        <center>
-            <h2>Necessidades de TI</h2>
-            <div class="divider"></div>
-        </center>
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card-panel cor-uffs">
+                    <div class="row">
+                        <div class="logo-mobile col s12">
+                            <center>
+                                <img src="uffs_logo.png" alt="Logo da Universidade Federal da Fronteira Sul">
+                            </center>
+                        </div>
+                        <div class="col s12 m7 l8 titulo-questionario">
+                            <h2>Questionário do PDTIC</h2>
+                        </div>
+                        <div class="logo-desktop col s12 m5 l4">
+                            <img src="uffs_logo.png" alt="Logo da Universidade Federal da Fronteira Sul">
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                </div>
+            </div>
+        </div>
         <!-- FORMULARIO -->
         <form class="formulario-uffs col s12 m8 offset-m2">
             <!-- TELA 0 -->
             <div id="questoes-tela-0" class="row">
                 <!-- IDENTIFICAÇÃO -->
                 <div class="col s12 m12">
-                    <h3>Identifique-se:</h3>
+                        <h3><b>Identifique-se</b></h3>
                     <div class="row">
+                        <!-- Nome -->
+                        <div class="col m4 l2 xl1">
+                            <h5 style="margin-top:25px;">Nome:</h5>
+                        </div>
+                        <div class="input-field col m6 l5 xl4">
+                            <input type="text" name="nomeIndividuo" value="">
+                        </div>
                         <!-- PAPEL -->
-                        <div class="col s5 m4 l1 offset-l2">
+                        <div class="col m4 l2 xl1">
                             <h5 style="margin-top:25px;">Perfil:</h5>
                         </div>
-                        <div class="input-field col s7 m8 l2 offset-l1">
+                        <div class="input-field col m6 l3 xl3">
                             <select name="perfilUFFS" id="selectPerfil">
                                 <option value="" disabled selected>selecionar</option>
                                 <option value="estudante">Estudante</option>
@@ -34,15 +57,12 @@
                     </div>
                     <div class="row">
                         <!-- CAMPUS -->
-                        <div class="col s5 m4 l1 offset-l2">
+                        <div class="col m4 l3 xl2">
                             <h5 style="margin-top:25px;">Localização:</h5>
                         </div>
-                        <div class="input-field col s7 m8 l4 offset-l1">
+                        <div class="input-field col m8 l7 xl4">
                             <select name="localizacaoUFFS" id="selectLocalizacao">
                                 <option value="" disabled selected>selecionar</option>
-                                <!-- {{#each mSelect}}
-                                    <option value="">{{loc}}</option>
-                                {{/each}} -->
                             </select>
                             <span id="auxSelect" style="display:none"></span>
                         </div>
@@ -54,7 +74,10 @@
                 <!-- QUESTÃO 1 -->
                 <div class="col s12 m12">
                     <p class="titulo-questao">
-                        1) Indique a necessidade de informações(Ex: Relatórios, Consultas, Registros), considerando as necessidades do seu setor.
+                        1) Considerando as suas necessidades no âmbito da UFFS, (estudante, docente ou téc. administrativo) indique quais informações
+                        você julga necessárias e que você ainda não tem acesso:
+                        <!-- exemplo para estudantes: comunicados do seu curso diretamente no portal do aluno. -->
+                        <!-- exemplo para servidores: relatório X no sistema Y com as seguintes informações. -->
                     </p>
                     <div id="resposta-q1">
 
@@ -71,7 +94,10 @@
                 <!-- QUESTÃO 2 -->
                 <div class="col s12 m12">
                     <p class="titulo-questao">
-                        2) Indique processos que você considera que devem ser informatizados e/ou automatizados.
+                        2) Considerando as suas necessidades no âmbito da UFFS, (estudante, docente ou téc. administrativo) indique
+                        processos que você considera que devem ser informatizados e/ou automatizados.
+                        <!-- exemplo para estudantes: entrega de documentos para validação de ACCs.  -->
+                        <!-- exemplo para servidores: comprovação de viagens com diárias e passagens. -->
                     </p>
                     <div id="resposta-q2">
 
@@ -88,7 +114,10 @@
                 <!-- QUESTÃO 3 -->
                 <div class="col s12 m12">
                     <p class="titulo-questao">
-                        3) Indique a necessidade de novas funcionalidade em sistemas da UFFS.
+                        3) Indique a necessidade de novas funcionalidades em sistemas da UFFS ou o desenvolvimento/aquisição de
+                        sistemas de informação.
+                        <!-- exemplo para estudantes: consulta de recebimento de auxílios no portal do aluno;  -->
+                        <!-- exemplo para servidores: -->
                     </p>
                     <div id="resposta-q3">
 
@@ -108,14 +137,9 @@
                 <!-- QUESTÃO 4 -->
                 <div class="col s12 m12">
                     <p class="titulo-questao">
-                        4) Avalie a qualidade dos sistemas da UFFS(
-                        [1] Ruim
-                        [2] Razoável
-                        [3] Médio
-                        [4] Satisfatório
-                        [5] Ótimo
-                        [NU] Não uso
-                        [NC] Não conheço).
+                        4) Avalie os seguintes sistemas disponibilizados na UFFS, levando em consideração suas funcionalidades, desempenho e a
+                        utilidade dos mesmos em relação às suas necessidades no âmbito da UFFS.
+                        Considere: [1] Ruim, [2] Razoável, [3] Bom, [4] Muito Bom, [5] Ótimo, [NU] Não utilizo, [NC] Não conheço
                     </p>
                     <br />
                     <div id="resposta-q4">
@@ -130,12 +154,9 @@
                 <!-- QUESTÃO 5 -->
                 <div class="col s12 m12">
                     <p class="titulo-questao">
-                        5) Avalie a qualidade dos serviços de TI da UFFS(
-                        [1] Ruim
-                        [2] Razoável
-                        [3] Médio
-                        [4] Satisfatório
-                        [5] Ótimo).
+                        5) Avalie os seguintes serviços de TI da UFFS, levando em consideração sua funcionalidade, desempenho e a
+                        utilidade dos mesmos em relação às suas necessidades no âmbito da UFFS.
+                        Considere: [1] Ruim, [2] Razoável, [3] Bom, [4] Muito Bom, [5] Ótimo, [NU] Não utilizo, [NC] Não conheço.
                     </p>
                     <br />
                     <div id="resposta-q5">
@@ -147,12 +168,9 @@
                 <!-- QUESTÃO 6 -->
                 <div class="col s12 m12">
                     <p class="titulo-questao">
-                        6) Avalie a qualidade dos equipamentos da UFFS(
-                        [1] Ruim
-                        [2] Razoável
-                        [3] Médio
-                        [4] Satisfatório
-                        [5] Ótimo ).
+                        6) Avalie os seguintes equipamentos de TI da UFFS, levando em consideração sua qualidade, desempenho e a
+                        utilidade dos mesmos em relação às suas necessidades no âmbito da UFFS.
+                        Considere: [1] Ruim, [2] Razoável, [3] Bom, [4] Muito Bom, [5] Ótimo, [NU] Não utilizo, [NC] Não conheço.
                     </p>
                     <br />
                     <div id="resposta-q6">
@@ -167,7 +185,7 @@
                 <!-- QUESTÃO 7 -->
                 <div class="col s12 m12">
                     <p class="titulo-questao">
-                        7) Indique a necessidade de novos serviços de TI.
+                        7) Indique a necessidade de novos recursos de TI (exemplo: capacitações sobre os sistemas utilizados na UFFS, equipamentos para videoconferência nos auditórios, etc).
                     </p>
                     <div id="resposta-q7">
 
@@ -184,7 +202,7 @@
                 <!-- QUESTÃO 8 -->
                 <div class="col s12 m12">
                     <p class="titulo-questao">
-                        8) Indique novas necessidades de infraestrutura de TI.
+                        8) Caso julgue necessário, faça considerações não atendidas pelas questões anteriores (exemplo: críticas, elogios, etc).
                     </p>
                     <div id="resposta-q8">
 
@@ -212,10 +230,10 @@
         <div class="row">
             <div class="col s12 m12">
                 <div class="col s6 m4 offset-m2 l2 offset-l4">
-                    <a id="btn-volta-cadastro" class="waves-effect waves-light btn brown darken-2">VOLTA</a>
+                    <a id="btn-volta-cadastro" class="waves-effect waves-light btn">VOLTA</a>
                 </div>
                 <div class="col s6 m4 l2">
-                    <a id="btn-avanca-cadastro" class="waves-effect waves-light btn brown darken-2">PROXIMO</a>
+                    <a id="btn-avanca-cadastro" class="waves-effect waves-light btn">PROXIMO</a>
             </div>
                 </div>
         </div>

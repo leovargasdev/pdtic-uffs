@@ -1,6 +1,15 @@
 body{
     font-family: 'Fira Sans', sans-serif;
 }
+.cor-uffs{
+    background-color: #00693e;
+    color: white;
+}
+.titulo-questionario h2{
+    text-align: right;
+    padding-right: 200px;
+    font-size: 48px;
+}
 .formulario-uffs{
     margin-bottom: 40px;
 }
@@ -29,11 +38,24 @@ body{
 #btn-enviar{
     margin-bottom: 50px;
 }
-
+#btn-volta-cadastro, #btn-avanca-cadastro{
+    background-color: #00693e;
+}
 #questoes-tela-1, #questoes-tela-2, #questoes-tela-3, #questoes-tela-4, #btn-enviar{
     display: none;
 }
-
+.logo-desktop{
+    display: block;
+}
+.logo-mobile{
+    display: none;
+}
+@media (max-width: 1190px) {
+    .titulo-questionario h2{
+        text-align: center;
+        padding-right: 0px;
+    }
+}
 /* Portrait tablet to landscape and desktop */
 @media (max-width: 992px) {
     .btn-nova-resposta a{
@@ -44,6 +66,10 @@ body{
     }
     .form-radios-desktop{
         display: none;
+    }
+    .titulo-questionario h2{
+        font-size: 32px;
+        margin-top: 40px;
     }
 }
 
@@ -60,5 +86,16 @@ body{
     }
     h2{
         font-size: 32px;
+    }
+    .cor-uffs img{
+        text-align: center;
+    }
+}
+@media (max-width: 600px) {
+    .logo-desktop{
+        display: none;
+    }
+    .logo-mobile{
+        display: block;
     }
 }

@@ -63,7 +63,7 @@ var equipamentos = [
     { valor: 'Notebooks' },
     { valor: 'Impressoras' }
 ];
-var classificacao = {1: "Ruim", 2: "Razoável", 3: "Médio", 4: "Satisfatório", 5: "Ótimo", 6: "Não uso", 7: "Não conheço"}
+var classificacao = {1: "Ruim", 2: "Razoável", 3: "Bom", 4: "Muito Bom", 5: "Ótimo", 6: "Não utilizo", 7: "Não conheço"}
 var contadores;
 var telaCadastro;
 Template.formulario.onRendered(function() {
@@ -172,7 +172,7 @@ Template.formulario.events({
 var obterRespostas = function(nResposta, campo){
     let campos = {d: "descricao", j: "justificativa", s: "sistema", n: "necessidade"};
     let result = {};
-    if(nResposta == 1 || nResposta == 2 || nResposta == 3 || nResposta == 7 || nResposta == 8){
+    if(nResposta == 1 || nResposta == 2 || nResposta == 3 || nResposta == 7){
         for(let k = 0; k < contadores[nResposta]; k++){
             result[k] = {
                 d: campo['r' + nResposta + campos['d'] + k].value,
@@ -180,8 +180,6 @@ var obterRespostas = function(nResposta, campo){
             };
             if(nResposta == 3){
                 result[k]['s'] = campo['r' + nResposta + campos['s'] + k].value;
-            }else if(nResposta == 8){
-                result[k]['n'] = campo['r' + nResposta + campos['n'] + k].value;
             }
         }
     } else if(nResposta == 4 || nResposta == 5 || nResposta == 6){
@@ -197,6 +195,12 @@ var obterRespostas = function(nResposta, campo){
             };
             grupo = grupo + 1;
         });
+    } else if(nResposta == 8){
+        for(let k = 0; k < contadores[nResposta]; k++){
+            result[k] = {
+                n: campo['r' + nResposta + campos['n'] + k].value
+            };
+        }
     }
     if(!Object.keys(result).length)
         return "Sem resposta";
@@ -241,7 +245,7 @@ var novoBloco = function(nQuestao, qIncremental){ // nQuestao = nº da questão,
 }
 
 var blocoForm = function(nQuestao){
-    let contador = contadores[nQuestao]
+    let contador = contadores[nQuestao];
     if(nQuestao == 1 || nQuestao == 2 || nQuestao == 7){ // QUESTÃO 1,2,7
         return('<div class="input-field col s12 m12 l6">\
                     <textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea"></textarea>\
@@ -282,7 +286,7 @@ var blocoForm = function(nQuestao){
         else                    itens = equipamentos;
         let result = '';
         let nGrupos = 0;
-        const rRadios = {1: 1, 2: 2, 3: 3, 4: 4, 5: 6, 6: 'NU', 7: 'NC'};
+        const rRadios = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 'NU', 7: 'NC'};
         const classLabel = {4:'col s12 m12 l5', 5:'col s5 m4 l5', 6: 'col s5 m4 l5'};
         // Rotúlo valores radio button
         result = '  <center class="form-radios-desktop">\
@@ -313,17 +317,9 @@ var blocoForm = function(nQuestao){
         });
         return result;
     } else { // QUESTÃO 8
-        return ('   <div class="input-field col s12 m12 l6 xl4">\
+        return ('   <div class="input-field col s12 m12 l12 xl12">\
                         <textarea id="r'+nQuestao+'necessidade'+contador+'" class="materialize-textarea"></textarea>\
                         <label for="r'+nQuestao+'necessidade'+contador+'">Necessidade</label>\
-                    </div>\
-                    <div class="input-field col s12 m12 l6 xl4">\
-                        <textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea"></textarea>\
-                        <label for="r'+nQuestao+'descricao'+contador+'">Descrição detalhada</label>\
-                    </div>\
-                    <div class="input-field col s12 m12 l12 xl4">\
-                        <textarea id="r'+nQuestao+'justificativa'+contador+'" class="materialize-textarea"></textarea>\
-                        <label for="r'+nQuestao+'justificativa'+contador+'">Justificativa da necessidade</label>\
                     </div>\
         ');
     }
