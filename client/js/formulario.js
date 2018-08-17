@@ -147,12 +147,13 @@ Template.formulario.events({
     },
     'submit .formulario-uffs': function(){
         let respostas = {}
+        let nomeIndividuo = event.target.nomeIndividuo.value || "Sem identificaçao";
         let perfil = event.target.perfilUFFS.value;
         let localizacao = event.target.localizacaoUFFS.value;
         if(isNotEmpty(perfil, "p") && isNotEmpty(localizacao, "c")){
             for(let question = 1; question < 9; question++)
                 respostas[question] = obterRespostas(question, event.target);
-            Meteor.call('novaResposta', perfil, localizacao, respostas);
+            Meteor.call('novaResposta', nomeIndividuo, perfil, localizacao, respostas);
             Router.go("/obrigado");
         }
         return false;

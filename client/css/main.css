@@ -9,6 +9,12 @@ body{
     text-align: right;
     padding-right: 200px;
     font-size: 48px;
+    font-weight: bold;
+}
+.texto-introducao{
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 40px;
 }
 .formulario-uffs{
     margin-bottom: 40px;
