@@ -32,51 +32,54 @@
             <!-- TELA 0 -->
             <div id="questoes-tela-0" class="row">
                 <!-- IDENTIFICAÇÃO -->
-                <div class="col s12 m12">
-                    <p class="texto-introducao">
-                        Questionário para a elaboração do Plano Diretor de Tecnologia da Informação – PDTIC da UFFS, vigência 2019 – 2021.
-                        O PDTIC é o instrumento de diagnóstico, planejamento e gestão dos recursos e processos de tecnologia da informação que
-                        objetiva o atendimento das necessidades de informação para a Universidade Federal da Fronteira Sul – UFFS.
-                        Este instrumento é essencial para que a Secretaria Especial de Tecnologia e Informação - SETI, atenda às necessidades da
-                        UFFS de forma eficiente e eficaz.
-                    </p>
-                    <h3>
-                        <b>Identifique-se</b>
-                    </h3>
-                    <div class="row">
-                        <!-- Nome -->
-                        <div class="col s3 m3 l2 xl1">
-                            <p class="label-formulario">Nome:</p>
-                        </div>
-                        <div class="input-field col s8 m7 l5 xl4">
-                            <input type="text" name="nomeIndividuo">
-                        </div>
-                        <!-- PAPEL -->
-                        <div class="col s3 m3 l2 xl1">
-                            <p class="label-formulario">Perfil:</p>
-                        </div>
-                        <div class="input-field col s7 m6 l3 xl3">
-                            <select name="perfilUFFS" id="selectPerfil">
-                                <option value="" disabled selected>selecionar</option>
-                                <option value="estudante">Estudante</option>
-                                <option value="docente">Docente</option>
-                                <option value="tecnico">Téc. Administrativo</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- CAMPUS -->
-                        <div class="col s4 m4 l3 xl2">
-                            <p class="label-formulario">Localização:</p>
-                        </div>
-                        <div class="input-field col s8 m8 l7 xl4">
-                            <select name="localizacaoUFFS" id="selectLocalizacao">
-                                <option value="" disabled selected>selecionar</option>
-                            </select>
-                            <span id="auxSelect" style="display:none"></span>
-                        </div>
-                    </div>
+                <p class="texto-introducao">
+                    Questionário para a elaboração do Plano Diretor de Tecnologia da Informação – PDTIC da UFFS, vigência 2019 – 2021.
+                    O PDTIC é o instrumento de diagnóstico, planejamento e gestão dos recursos e processos de tecnologia da informação que
+                    objetiva o atendimento das necessidades de informação para a Universidade Federal da Fronteira Sul – UFFS.
+                    Este instrumento é essencial para que a Secretaria Especial de Tecnologia e Informação - SETI, atenda às necessidades da
+                    UFFS de forma eficiente e eficaz.
+                </p>
+                <h3>
+                    <b>Identifique-se</b>
+                </h3>
+                <!-- NOME -->
+                <div class="col s3 m3 l2 xl2">
+                    <span class="label-formulario">Nome:</span>
                 </div>
+                <div class="input-field col s9 m9 l10 xl10">
+                    <input type="text" name="nomeIndividuo" placeholder="Campo não obrigatório">
+                </div>
+                <div class="col s12 m12 l12 xl12" style="margin-top:30px">
+
+                </div>
+                <!-- PAPEL -->
+                <div class="col s3 m3 l2 xl2">
+                    <span class="label-formulario">Perfil:</span>
+                </div>
+                <div class="input-field col s5 m7 l3 xl3">
+                    <select name="perfilUFFS" id="selectPerfil">
+                        <option value="" disabled selected>selecionar</option>
+                        <option value="estudante">Estudante</option>
+                        <option value="docente">Docente</option>
+                        <option value="tecnico">Téc. Administrativo</option>
+                    </select>
+                </div>
+
+                <div class="quebra-linha-form col s12 m12 l12 xl12" style="margin-top:30px">
+
+                </div>
+
+                <!-- CAMPUS -->
+                <div class="col s4 m5 l3 xl3">
+                    <span class="label-formulario">Localização:</span>
+                </div>
+                <div class="input-field col s8 m7 l4 xl4">
+                    <select name="localizacaoUFFS" id="selectLocalizacao">
+                        <option value="" disabled selected>selecionar</option>
+                    </select>
+                    <span id="auxSelect" style="display:none"></span>
+                </div>
+
             </div>
             <!-- TELA 1 -->
             <div id="questoes-tela-1" class="row">

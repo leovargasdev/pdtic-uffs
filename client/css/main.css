@@ -1,3 +1,26 @@
+::-webkit-input-placeholder {
+    color: #949494;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: #949494;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #949494;
+}
+
+:-ms-input-placeholder {
+   color: #949494;
+}
+
+input:not([type]), input[type="text"]:not(.browser-default), input[type="password"]:not(.browser-default), input[type="email"]:not(.browser-default),
+input[type="url"]:not(.browser-default), input[type="time"]:not(.browser-default), input[type="date"]:not(.browser-default), input[type="datetime"]:not(.browser-default), input[type="datetime-local"]:not(.browser-default), input[type="tel"]:not(.browser-default),
+input[type="number"]:not(.browser-default), input[type="search"]:not(.browser-default), textarea.materialize-textarea{
+    color: black;
+    border-bottom: 1px solid #24824e;
+}
+
 body{
     font-family: 'Fira Sans', sans-serif;
 }
@@ -19,6 +42,10 @@ body{
 .label-formulario{
     font-size: 28px;
     font-weight: 400;
+    padding-left: 28px;
+}
+.input-field{
+    margin-top: auto;
 }
 .formulario-uffs{
     margin-bottom: 40px;
@@ -34,17 +61,19 @@ body{
     height: 5px;
     background-color: black;
 }
+.quebra-linha-form{
+    display: none;
+}
 .form-radios-desktop{
     display: block;
+}
+.radio-form{
+    position: inherit !important;
+    opacity: 1 !important;
 }
 .form-radios-mobile{
     display: none;
 }
-/* FORM com radio button */
-/* .radio-form{
-    position: inherit !important;
-    opacity: 1 !important;
-} */
 #btn-volta-cadastro, #btn-avanca-cadastro{
     background-color: #00693e;
 }
@@ -82,6 +111,9 @@ textarea.materialize-textarea{
 }
 /* Portrait tablet to landscape and desktop */
 @media (max-width: 992px) {
+    .quebra-linha-form{
+        display: block;
+    }
     .btn-nova-resposta a{
         font-size: 13px;
     }

@@ -254,25 +254,25 @@ var blocoForm = function(nQuestao){
     let place = "";
     let perfil = $("#selectPerfil").val();
     if(nQuestao == 1){
-        if(perfil == 'tecnico') place = '\nRelatório X no sistema Y com as seguintes informações.';
-        else place = '\nComunicados do seu curso diretamente no portal do aluno';
+        if(perfil == 'tecnico') place = 'Relatório X no sistema Y com as seguintes informações.';
+        else place = 'Comunicados do seu curso diretamente no portal do aluno';
     }else if(nQuestao == 2){
-        if(perfil == 'tecnico') place = '\nComprovação de viagens com diárias e passagens.';
-        else place = '\nEntrega de documentos para validação de ACCs.';
+        if(perfil == 'tecnico') place = 'Comprovação de viagens com diárias e passagens.';
+        else place = 'Entrega de documentos para validação de ACCs.';
     }else if(nQuestao == 3){
         if(perfil == 'tecnico') place = '';
-        else place = '\nConsulta de recebimento de auxílios no portal do aluno';
+        else place = 'Consulta de recebimento de auxílios no portal do aluno';
     }
 
     let contador = contadores[nQuestao];
     if(nQuestao == 1 || nQuestao == 2 || nQuestao == 7){ // QUESTÃO 1,2,7
         return('<div class="input-field col s12 m12 l6">\
                     <textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea" placeholder="'+place+'"></textarea>\
-                    <label for="r'+nQuestao+'descricao'+contador+'">Descrição detalhada</label>\
+                    <label for="r'+nQuestao+'descricao'+contador+'" class="active">Descrição detalhada</label>\
                 </div>\
                 <div class="input-field col s12 m12 l6">\
                     <textarea id="r'+nQuestao+'justificativa'+contador+'" class="materialize-textarea"></textarea>\
-                    <label for="r'+nQuestao+'justificativa'+contador+'">Justificativa da necessidade</label>\
+                    <label for="r'+nQuestao+'justificativa'+contador+'" class="active">Justificativa da necessidade</label>\
                 </div>\
         ');
     } else if (nQuestao == 3){ // QUESTÃO 3
@@ -290,11 +290,11 @@ var blocoForm = function(nQuestao){
                         <div class="row">\
                             <div class="input-field col s12 m12 l6">\
                                 <textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea" placeholder="'+place+'"></textarea>\
-                                <label for="r'+nQuestao+'descricao'+contador+'">Descrição detalhada</label>\
+                                <label for="r'+nQuestao+'descricao'+contador+'" class="active">Descrição detalhada</label>\
                             </div>\
                             <div class="input-field col s12 m12 l6">\
                                 <textarea id="r'+nQuestao+'justificativa'+contador+'" class="materialize-textarea"></textarea>\
-                                <label for="r'+nQuestao+'justificativa'+contador+'">Justificativa</label>\
+                                <label for="r'+nQuestao+'justificativa'+contador+'" class="active">Justificativa</label>\
                             </div>\
                         </div>\
         ');
@@ -326,7 +326,7 @@ var blocoForm = function(nQuestao){
                                 <div class="col s1 m1 l1">\
                                     <label>\
                                         <input value="' + radioNum + '" class="radio-form" name="r' + nQuestao + 'Grupo' + nGrupos + '" type="radio"/>\
-                                        <span class="form-radios-mobile">' + rRadios[radioNum] + '</span>\
+                                        <p class="form-radios-mobile">' + rRadios[radioNum] + '</p>\
                                     </label>\
                                 </div>\
                             </center>';
@@ -338,7 +338,7 @@ var blocoForm = function(nQuestao){
     } else { // QUESTÃO 8
         return ('   <div class="input-field col s12 m12 l12 xl12">\
                         <textarea id="r'+nQuestao+'necessidade'+contador+'" class="materialize-textarea"></textarea>\
-                        <label for="r'+nQuestao+'necessidade'+contador+'">Necessidade</label>\
+                        <label for="r'+nQuestao+'necessidade'+contador+'">Considerações</label>\
                     </div>\
         ');
     }
