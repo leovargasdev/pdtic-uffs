@@ -5,7 +5,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 var restringirEstudantes = {
     'sistemas': ['Portal do Aluno','Moodle Acadêmico','Sistema de Auxílios Socioeconômicos - SAS','Sistema de Gestão de Certificados Eletrônicos - SGCE'],
     'equipamentos': ['Computadores Desktop', 'Projetores', 'Equipamentos/Salas de Videoconferência'],
-    'servicos': ['VPN','Internet','WIFI','Videoconferência','Gestão de Biblioteca - Pergamum','Repositório Digital – RD','Portal de Periódicos','Sistema de Atendimento de TI']
+    'servicos': ['VPN','Internet','WIFI','Lista Telefônicas - telefones','Videoconferência','Gestão de Biblioteca - Pergamum','Repositório Digital – RD','Portal de Periódicos','Sistema de Atendimento de TI']
 }
 var sistemas = [
     { valor: 'Sistema de Gestão Acadêmica - SGA' },
@@ -69,6 +69,7 @@ var servicos = [
     { valor: 'Sistema de Atendimento DICOM – ADICOM' },
     { valor: 'Repositório de Arquivos' },
     { valor: 'Suporte técnico ao usuário' },
+    { valor: 'Lista Telefônicas - telefones' },
     { valor: 'Videoconferência' }
 ];
 var equipamentos = [
