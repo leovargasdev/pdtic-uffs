@@ -1,6 +1,12 @@
 import '../css/materialize.min.css';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
+// var placeholders = {}
+var restringirEstudantes = {
+    'sistemas': ['Portal do Aluno','Moodle Acadêmico','Sistema de Auxílios Socioeconômicos - SAS','Sistema de Gestão de Certificados Eletrônicos - SGCE'],
+    'equipamentos': ['Computadores Desktop', 'Projetores', 'Equipamentos/Salas de Videoconferência'],
+    'servicos': ['VPN','Internet','WIFI','Videoconferência','Gestão de Biblioteca - Pergamum','Repositório Digital – RD','Portal de Periódicos','Sistema de Atendimento de TI']
+}
 var sistemas = [
     { valor: 'Sistema de Gestão Acadêmica - SGA' },
     { valor: 'Sistema de Gestão da Pós-Graduação - SGP' },
@@ -56,25 +62,30 @@ var servicos = [
     { valor: 'WIFI' },
     { valor: 'webmail' },
     { valor: 'Telefonia' },
-    { valor: 'Videoconferência' },
-    { valor: 'Suporte a sistemas' }
+    { valor: 'Gestão de Biblioteca - Pergamum' },
+    { valor: 'Repositório Digital – RD' },
+    { valor: 'Portal de Periódicos' },
+    { valor: 'Sistema de Atendimento de TI' },
+    { valor: 'Sistema de Atendimento DICOM – ADICOM' },
+    { valor: 'Repositório de Arquivos' },
+    { valor: 'Suporte técnico ao usuário' },
+    { valor: 'Videoconferência' }
 ];
 var equipamentos = [
     { valor: 'Computadores Desktop' },
     { valor: 'Notebooks' },
-    { valor: 'Impressoras' }
+    { valor: 'Projetores' },
+    { valor: 'Aparelhos telefônicos' },
+    { valor: 'Equipamentos/Salas de Videoconferência' },
+    { valor: 'Impressoras/Multifuncionais' }
 ];
 var classificacao = {1: "Ruim", 2: "Razoável", 3: "Bom", 4: "Muito Bom", 5: "Ótimo", 6: "Não utilizo", 7: "Não conheço"}
 var contadores;
 var telaCadastro;
 Template.formulario.onRendered(function() {
     contadores = {1: 0, 2: 0, 3: 0, 7: 0, 8: 0};
-    novoBloco(4, false); // QUESTÃO 4
-    novoBloco(5, false); // QUESTÃO 5
-    novoBloco(6, false); // QUESTÃO 6
     telaCadastro = 0;
     renderizaTela(telaCadastro);
-    // $('select').material_select();
     $('select').formSelect();
     $("#btn-nova-resposta-q1").text("Responder");
     $("#btn-nova-resposta-q2").text("Responder");
@@ -102,8 +113,13 @@ Template.formulario.events({
                 selectLoc.add(option);
             });
         }
-        // $('select').material_select();
-        $('select').formSelect();
+        $('#resposta-q4').empty();
+        novoBloco(4, false); // QUESTÃO 4
+        $('#resposta-q5').empty();
+        novoBloco(5, false); // QUESTÃO 4
+        $('#resposta-q6').empty();
+        novoBloco(6, false); // QUESTÃO 4
+        $('select').formSelect(); // SELECT DA LOCALIZAÇÃO
     },
     'click #nova-resposta-q1': function(event){
         novoBloco(1, true);
@@ -113,7 +129,6 @@ Template.formulario.events({
     },
     'click #nova-resposta-q3': function(event){
         novoBloco(3, true);
-        // $('select').material_select();
         $('select').formSelect();
     },
     'click #nova-resposta-q7': function(event){
@@ -251,27 +266,44 @@ var novoBloco = function(nQuestao, qIncremental){ // nQuestao = nº da questão,
 }
 
 var blocoForm = function(nQuestao){
-    let place = "";
+    let place = {};
     let perfil = $("#selectPerfil").val();
     if(nQuestao == 1){
-        if(perfil == 'tecnico') place = 'Relatório X no sistema Y com as seguintes informações.';
-        else place = 'Comunicados do seu curso diretamente no portal do aluno';
+        if(perfil == 'estudante'){
+            place['d'] = 'Receber comunicados do meu curso no portal do aluno, como por exemplo, o cancelamento de uma aula, a divulgação de eventos do calendário acadêmico, etc.';
+            place['j'] = 'É importante recebermos este tipo de informações com antecedência para evitar idas desnecessárias ao Campus, por exemplo';
+        }else{
+            place['d'] = 'Relatório X no sistema Y com as seguintes informações…';
+            place['j'] = 'Necessitamos destas informações para controlar as seguintes atividades…';
+        }
     }else if(nQuestao == 2){
-        if(perfil == 'tecnico') place = 'Comprovação de viagens com diárias e passagens.';
-        else place = 'Entrega de documentos para validação de ACCs.';
+        if(perfil == 'estudante'){
+            place['d'] = 'A entrega de documentos para validação de ACCs';
+            place['j'] = 'Atualmente temos que se deslocar até a secretaria acadêmica para protocolar os documentos de comprovação';
+        }else{
+            place['d'] = 'Informatizar todo o processo solicitação de viagens com diárias e passagens, sem a necessidade de utilizar papel';
+            place['j'] = 'Apesar de termos o processo tramitando via sistema, atualmente os documentos precisam ser assinados e digitalizados para inclusão no sistema. A assinatura poderia ser digital neste caso';
+        }
     }else if(nQuestao == 3){
-        if(perfil == 'tecnico') place = '';
-        else place = 'Consulta de recebimento de auxílios no portal do aluno';
+        if(perfil == 'estudante'){
+            place['d'] = 'Desenvolvimento de interface de consulta de recebimento de auxílios socioeconômicos no portal do aluno';
+            place['j'] = 'Atualmente, ficamos sabendo do valor recebido apenas após o depósito bancário. Com a consulta em tela, teríamos maior previsibilidade do recurso que será recebido';
+        }else{
+            place['d'] = 'Criar um módulo para a gestão da participação dos servidores em programas e projetos como o PLEDUCA e PIACD';
+            place['j'] = 'Atualmente o processo é manual e passível a erros';
+        }
+    }else if(nQuestao == 7){
+        place['d'] = 'Equipamentos para videoconferência nos auditórios';
+        place['j'] = 'Possibilitar a realização de eventos e aulas com estrutura multicampi';
     }
-
     let contador = contadores[nQuestao];
     if(nQuestao == 1 || nQuestao == 2 || nQuestao == 7){ // QUESTÃO 1,2,7
         return('<div class="input-field col s12 m12 l6">\
-                    <textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea" placeholder="'+place+'"></textarea>\
+                    <textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea" placeholder="'+place['d']+'"></textarea>\
                     <label for="r'+nQuestao+'descricao'+contador+'" class="active">Descrição detalhada</label>\
                 </div>\
                 <div class="input-field col s12 m12 l6">\
-                    <textarea id="r'+nQuestao+'justificativa'+contador+'" class="materialize-textarea"></textarea>\
+                    <textarea id="r'+nQuestao+'justificativa'+contador+'" class="materialize-textarea" placeholder="'+place['j']+'"></textarea>\
                     <label for="r'+nQuestao+'justificativa'+contador+'" class="active">Justificativa da necessidade</label>\
                 </div>\
         ');
@@ -289,11 +321,11 @@ var blocoForm = function(nQuestao){
                         </div>\
                         <div class="row">\
                             <div class="input-field col s12 m12 l6">\
-                                <textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea" placeholder="'+place+'"></textarea>\
+                                <textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea" placeholder="'+place['d']+'"></textarea>\
                                 <label for="r'+nQuestao+'descricao'+contador+'" class="active">Descrição detalhada</label>\
                             </div>\
                             <div class="input-field col s12 m12 l6">\
-                                <textarea id="r'+nQuestao+'justificativa'+contador+'" class="materialize-textarea"></textarea>\
+                                <textarea id="r'+nQuestao+'justificativa'+contador+'" class="materialize-textarea" placeholder="'+place['j']+'"></textarea>\
                                 <label for="r'+nQuestao+'justificativa'+contador+'" class="active">Justificativa</label>\
                             </div>\
                         </div>\
@@ -306,7 +338,7 @@ var blocoForm = function(nQuestao){
         let result = '';
         let nGrupos = 0;
         const rRadios = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 'NU', 7: 'NC'};
-        const classLabel = {4:'col s12 m12 l5', 5:'col s5 m4 l5', 6: 'col s5 m4 l5'};
+        const classLabel = {4:'col s12 m12 l5', 5:'col s5 m4 l5', 6: 'col s12 m12 l5'};
         // Rotúlo valores radio button
         result = '  <center class="form-radios-desktop">\
                         <div class="row">\
@@ -320,7 +352,16 @@ var blocoForm = function(nQuestao){
                         </div>\
                     </center>';
         itens.forEach((s) => {
+            if(perfil == 'estudante'){
+                if(nQuestao == 4 && !restringirEstudantes['sistemas'].includes(s['valor']))
+                    return;
+                else if(nQuestao == 5 && !restringirEstudantes['servicos'].includes(s['valor']))
+                    return;
+                else if(nQuestao == 6 && !restringirEstudantes['equipamentos'].includes(s['valor']))
+                    return;
+            }
             let aux = '<div class="row"><div class="' + classLabel[nQuestao] + '"><b>' + s['valor'] + ': </b></div>';
+
             for(let radioNum = 1; radioNum < 8; radioNum++){
                 aux = aux + '<center>\
                                 <div class="col s1 m1 l1">\
