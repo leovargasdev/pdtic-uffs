@@ -16,6 +16,10 @@ body{
     font-size: 18px;
     margin-bottom: 40px;
 }
+.label-formulario{
+    font-size: 28px;
+    font-weight: 400;
+}
 .formulario-uffs{
     margin-bottom: 40px;
 }
@@ -41,9 +45,6 @@ body{
     position: inherit !important;
     opacity: 1 !important;
 }
-#btn-enviar{
-    margin-bottom: 50px;
-}
 #btn-volta-cadastro, #btn-avanca-cadastro{
     background-color: #00693e;
 }
@@ -56,10 +57,24 @@ body{
 .logo-mobile{
     display: none;
 }
+.btn-submit{
+    background-color: #094867;
+    width: 100%;
+    height: 44px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 50px;
+}
+.btn-submit: hover{
+    background-color: #094867;
+}
 @media (max-width: 1190px) {
     .titulo-questionario h2{
         text-align: center;
         padding-right: 0px;
+    }
+    .label-formulario{
+        font-size: 26px;
     }
 }
 /* Portrait tablet to landscape and desktop */
@@ -96,6 +111,14 @@ body{
     .cor-uffs img{
         text-align: center;
     }
+    .label-formulario{
+        font-size: 22px;
+        margin-top: 28px;
+    }
+    .texto-introducao{
+        font-size: 16px;
+        margin-bottom: auto;
+    }
 }
 @media (max-width: 600px) {
     .logo-desktop{
@@ -103,5 +126,11 @@ body{
     }
     .logo-mobile{
         display: block;
+    }
+    .label-formulario{
+        font-size: 20px;
+    }
+    .texto-introducao{
+        font-size: 14px;
     }
 }

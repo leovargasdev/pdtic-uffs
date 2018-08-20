@@ -45,17 +45,17 @@
                     </h3>
                     <div class="row">
                         <!-- Nome -->
-                        <div class="col m4 l2 xl1">
-                            <h5 style="margin-top:25px;">Nome:</h5>
+                        <div class="col s3 m3 l2 xl1">
+                            <p class="label-formulario">Nome:</p>
                         </div>
-                        <div class="input-field col m6 l5 xl4">
+                        <div class="input-field col s8 m7 l5 xl4">
                             <input type="text" name="nomeIndividuo">
                         </div>
                         <!-- PAPEL -->
-                        <div class="col m4 l2 xl1">
-                            <h5 style="margin-top:25px;">Perfil:</h5>
+                        <div class="col s3 m3 l2 xl1">
+                            <p class="label-formulario">Perfil:</p>
                         </div>
-                        <div class="input-field col m6 l3 xl3">
+                        <div class="input-field col s7 m6 l3 xl3">
                             <select name="perfilUFFS" id="selectPerfil">
                                 <option value="" disabled selected>selecionar</option>
                                 <option value="estudante">Estudante</option>
@@ -66,10 +66,10 @@
                     </div>
                     <div class="row">
                         <!-- CAMPUS -->
-                        <div class="col m4 l3 xl2">
-                            <h5 style="margin-top:25px;">Localização:</h5>
+                        <div class="col s4 m4 l3 xl2">
+                            <p class="label-formulario">Localização:</p>
                         </div>
-                        <div class="input-field col m8 l7 xl4">
+                        <div class="input-field col s8 m8 l7 xl4">
                             <select name="localizacaoUFFS" id="selectLocalizacao">
                                 <option value="" disabled selected>selecionar</option>
                             </select>
@@ -228,8 +228,8 @@
             </div>
             <!-- BOTÃO ENVIAR -->
             <div id="btn-enviar" class="row">
-                <div class="col s6 offset-s3 m6 offset-m3 l4 offset-l4">
-                    <button style="width:100%" class="btn-large waves-effect waves-light" type="submit" name="action">
+                <div class="col s6 offset-s3 m6 offset-m3 l4 offset-l4 xl2 offset-xl5">
+                    <button class="btn waves-effect waves-light btn-submit" type="submit">
                         ENVIAR
                     </button>
                 </div>
@@ -243,8 +243,8 @@
                 </div>
                 <div class="col s6 m4 l2">
                     <a id="btn-avanca-cadastro" class="waves-effect waves-light btn">PROXIMO</a>
-            </div>
                 </div>
+            </div>
         </div>
     </div>
 </template>

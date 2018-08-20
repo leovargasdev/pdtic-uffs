@@ -119,7 +119,7 @@ Template.formulario.events({
         novoBloco(8, true);
 
     },
-    'click #btn-avanca-cadastro': function(){
+    'click #btn-avanca-cadastro': function(event){
         let perfil = $("#selectPerfil").val();
         let localizacao = $("#selectLocalizacao").val();
         let menssagemAlert = "";
@@ -145,7 +145,7 @@ Template.formulario.events({
             jQuery('html, body').animate({scrollTop: 0}, 500);
         }
     },
-    'submit .formulario-uffs': function(){
+    'submit .formulario-uffs': function(event){
         let respostas = {}
         let nomeIndividuo = event.target.nomeIndividuo.value || "Sem identificaçao";
         let perfil = event.target.perfilUFFS.value;
@@ -153,6 +153,7 @@ Template.formulario.events({
         if(isNotEmpty(perfil, "p") && isNotEmpty(localizacao, "c")){
             for(let question = 1; question < 9; question++)
                 respostas[question] = obterRespostas(question, event.target);
+            console.log(respostas);
             Meteor.call('novaResposta', nomeIndividuo, perfil, localizacao, respostas);
             Router.go("/obrigado");
         }
@@ -176,8 +177,8 @@ var obterRespostas = function(nResposta, campo){
     if(nResposta == 1 || nResposta == 2 || nResposta == 3 || nResposta == 7){
         for(let k = 0; k < contadores[nResposta]; k++){
             result[k] = {
-                d: campo['r' + nResposta + campos['d'] + k].value,
-                j: campo['r' + nResposta + campos['j'] + k].value
+                d: campo['r' + nResposta + campos['d'] + k].value.replace(/(\r\n|\n|\r)/gm," "),
+                j: campo['r' + nResposta + campos['j'] + k].value.replace(/(\r\n|\n|\r)/gm," ")
             };
             if(nResposta == 3){
                 result[k]['s'] = campo['r' + nResposta + campos['s'] + k].value;
@@ -199,7 +200,7 @@ var obterRespostas = function(nResposta, campo){
     } else if(nResposta == 8){
         for(let k = 0; k < contadores[nResposta]; k++){
             result[k] = {
-                n: campo['r' + nResposta + campos['n'] + k].value
+                n: campo['r' + nResposta + campos['n'] + k].value.replace(/(\r\n|\n|\r)/gm," ")
             };
         }
     }
@@ -246,10 +247,23 @@ var novoBloco = function(nQuestao, qIncremental){ // nQuestao = nº da questão,
 }
 
 var blocoForm = function(nQuestao){
+    let place = "";
+    let perfil = $("#selectPerfil").val();
+    if(nQuestao == 1){
+        if(perfil == 'tecnico') place = '\nRelatório X no sistema Y com as seguintes informações.';
+        else place = '\nComunicados do seu curso diretamente no portal do aluno';
+    }else if(nQuestao == 2){
+        if(perfil == 'tecnico') place = '\nComprovação de viagens com diárias e passagens.';
+        else place = '\nEntrega de documentos para validação de ACCs.';
+    }else if(nQuestao == 3){
+        if(perfil == 'tecnico') place = '';
+        else place = '\nConsulta de recebimento de auxílios no portal do aluno';
+    }
+
     let contador = contadores[nQuestao];
     if(nQuestao == 1 || nQuestao == 2 || nQuestao == 7){ // QUESTÃO 1,2,7
         return('<div class="input-field col s12 m12 l6">\
-                    <textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea"></textarea>\
+                    <textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea" placeholder="'+place+'"></textarea>\
                     <label for="r'+nQuestao+'descricao'+contador+'">Descrição detalhada</label>\
                 </div>\
                 <div class="input-field col s12 m12 l6">\
@@ -271,7 +285,7 @@ var blocoForm = function(nQuestao){
                         </div>\
                         <div class="row">\
                             <div class="input-field col s12 m12 l6">\
-                                <textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea"></textarea>\
+                                <textarea id="r'+nQuestao+'descricao'+contador+'" class="materialize-textarea" placeholder="'+place+'"></textarea>\
                                 <label for="r'+nQuestao+'descricao'+contador+'">Descrição detalhada</label>\
                             </div>\
                             <div class="input-field col s12 m12 l6">\
