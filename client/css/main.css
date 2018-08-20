@@ -41,10 +41,10 @@ body{
     display: none;
 }
 /* FORM com radio button */
-.radio-form{
+/* .radio-form{
     position: inherit !important;
     opacity: 1 !important;
-}
+} */
 #btn-volta-cadastro, #btn-avanca-cadastro{
     background-color: #00693e;
 }
@@ -67,6 +67,9 @@ body{
 }
 .btn-submit: hover{
     background-color: #094867;
+}
+textarea.materialize-textarea{
+    min-height: 5rem;
 }
 @media (max-width: 1190px) {
     .titulo-questionario h2{

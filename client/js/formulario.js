@@ -1,3 +1,4 @@
+import '../css/materialize.min.css';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 var sistemas = [
@@ -73,7 +74,8 @@ Template.formulario.onRendered(function() {
     novoBloco(6, false); // QUESTÃO 6
     telaCadastro = 0;
     renderizaTela(telaCadastro);
-    $('select').material_select();
+    // $('select').material_select();
+    $('select').formSelect();
     $("#btn-nova-resposta-q1").text("Responder");
     $("#btn-nova-resposta-q2").text("Responder");
     $("#btn-nova-resposta-q3").text("Responder");
@@ -100,7 +102,8 @@ Template.formulario.events({
                 selectLoc.add(option);
             });
         }
-        $('select').material_select();
+        // $('select').material_select();
+        $('select').formSelect();
     },
     'click #nova-resposta-q1': function(event){
         novoBloco(1, true);
@@ -110,7 +113,8 @@ Template.formulario.events({
     },
     'click #nova-resposta-q3': function(event){
         novoBloco(3, true);
-        $('select').material_select();
+        // $('select').material_select();
+        $('select').formSelect();
     },
     'click #nova-resposta-q7': function(event){
         novoBloco(7, true);
