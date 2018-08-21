@@ -3,55 +3,54 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 // var placeholders = {}
 var restringirEstudantes = {
-    'sistemas': ['Portal do Aluno','Moodle Acadêmico','Sistema de Auxílios Socioeconômicos - SAS','Sistema de Gestão de Certificados Eletrônicos - SGCE'],
+    'sistemas': ['Portal do Aluno','Moodle Acadêmico','Moodle Projetos','Sistema de Auxílios Socioeconômicos - SAS','Sistema de Gestão de Certificados Eletrônicos - SGCE'],
     'equipamentos': ['Computadores Desktop', 'Projetores', 'Equipamentos/Salas de Videoconferência'],
+    'localizacao': ['Campus Cerro Largo – RS','Campus Chapecó – SC','Campus Erechim – RS','Campus Laranjeiras do Sul – PR','Campus Realeza – PR','Campus Passo Fundo - RS'],
     'servicos': ['VPN','Internet','WIFI','Lista Telefônicas - telefones','Videoconferência','Gestão de Biblioteca - Pergamum','Repositório Digital – RD','Portal de Periódicos','Sistema de Atendimento de TI']
 }
 var sistemas = [
-    { valor: 'Sistema de Gestão Acadêmica - SGA' },
-    { valor: 'Sistema de Gestão da Pós-Graduação - SGP' },
-    { valor: 'Portal do Aluno' },
-    { valor: 'Portal do Professor' },
-    { valor: 'Sistema de Cartões Institucionais - SCI' },
     { valor: 'Moodle Acadêmico' },
     { valor: 'Moodle Colaboração' },
-    { valor: 'Sistema de Gestão de Projetos PRISMA' },
+    { valor: 'Moodle Projetos' },
+    { valor: 'Portal do Aluno' },
+    { valor: 'Portal do Professor' },
+    { valor: 'Sistema de Almoxarifado - ALX' },
     { valor: 'Sistema de Auxílios Socioeconômicos - SAS' },
-    { valor: 'Sistema Eletrônico de Informações - SEI' },
-    { valor: 'Sistema de Gestão do Organograma' },
+    { valor: 'Sistema de Cartões Institucionais - SCI' },
+    { valor: 'Sistema de Compras e Licitações - SCL' },
+    { valor: 'Sistema de Informações Patrimoniais - SIP' },
+    { valor: 'Sistema de Gestão Acadêmica - SGA' },
+    { valor: 'Sistema de Gestão da Pós-Graduação - SGP' },
+    { valor: 'Sistema de Gestão de Projetos PRISMA' },
     { valor: 'Sistema de Gestão de Certificados Eletrônicos - SGCE' },
     { valor: 'Sistema de Gestão de Dados da PROGESP - SPA' },
     { valor: 'Sistema de Gestão de Processos e Documentos - SGPD' },
-    { valor: 'Sistema de Almoxarifado - ALX' },
-    { valor: 'Sistema de Informações Patrimoniais - SIP' },
-    { valor: 'Sistema de Compras e Licitações - SCL' },
-    { valor: 'Sistema de Gestão Financeira e Contratos - SGF' }
+    { valor: 'Sistema de Gestão do Organograma' },
+    { valor: 'Sistema de Gestão Financeira e Contratos - SGF' },
+    { valor: 'Sistema Eletrônico de Informações - SEI' }
 ];
-// Essa localização eh para Estudante, docente e tecnicos.
-var localizacaoGeral = [
+var localizacao = [
+    { loc: 'Auditoria Interna' },
+    { loc: 'Assessoria para Assuntos Internacionais' },
     { loc: 'Campus Cerro Largo – RS' },
     { loc: 'Campus Chapecó – SC' },
     { loc: 'Campus Erechim – RS' },
     { loc: 'Campus Laranjeiras do Sul – PR' },
     { loc: 'Campus Realeza – PR' },
-    { loc: 'Campus Passo Fundo - RS' }
-];
-// Essa localização eh somente para tecnicos.
-var localizacaoTec = [
-    { loc: 'Gabinete do Reitor' },
-    { loc: 'Auditoria Interna' },
-    { loc: 'Procuradoria Federal' },
-    { loc: 'Procuradoria Educacional Institucional' },
-    { loc: 'Assessoria para Assuntos Internacionais' },
+    { loc: 'Campus Passo Fundo - RS' },
     { loc: 'Diretoria de Comunicação' },
+    { loc: 'Gabinete do Reitor' },
     { loc: 'Ouvidoria' },
-    { loc: 'Pró-Reitoria de Graduação' },
-    { loc: 'Pró-Reitoria de Pesquisa e Pós-Graduação' },
-    { loc: 'Pró-Reitoria de Extensão e Cultura' },
+    { loc: 'Procuradoria Educacional Institucional' },
+    { loc: 'Procuradoria Federal' },
     { loc: 'Pró-Reitoria de Administração e Infraestrutura' },
-    { loc: 'Pró-Reitoria de Planejamento' },
     { loc: 'Pró-Reitoria de Assuntos Estudantis' },
     { loc: 'Pró-Reitoria de Gestão de Pessoas' },
+    { loc: 'Pró-Reitoria de Graduação' },
+    { loc: 'Pró-Reitoria de Extensão e Cultura' },
+    { loc: 'Pró-Reitoria de Pesquisa e Pós-Graduação' },
+    { loc: 'Pró-Reitoria de Planejamento' },
+    { loc: 'Reitoria' },
     { loc: 'Secretaria Especial de Laboratórios' },
     { loc: 'Secretaria Especial de Obras' },
     { loc: 'Secretaria Especial de Tecnologia e Informação' }
@@ -100,20 +99,15 @@ Template.formulario.events({
         let perfil = $("#selectPerfil").val();
         $('#selectLocalizacao').empty();
         let selectLoc = document.getElementById("selectLocalizacao");
-        localizacaoGeral.forEach((local) => {
+        localizacao.forEach((local) => {
+            if(perfil == 'estudante')
+                if(!restringirEstudantes['localizacao'].includes(local['loc']))
+                    return;
             let option = document.createElement("option");
             option.text = local['loc'];
             option.value = local['loc'];
             selectLoc.add(option);
         });
-        if(perfil == 'tecnico'){
-            localizacaoTec.forEach((local) => {
-                let option = document.createElement("option");
-                option.text = local['loc'];
-                option.value = local['loc'];
-                selectLoc.add(option);
-            });
-        }
         $('#resposta-q4').empty();
         novoBloco(4, false); // QUESTÃO 4
         $('#resposta-q5').empty();
