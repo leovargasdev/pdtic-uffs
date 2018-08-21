@@ -100,14 +100,20 @@ Template.formulario.events({
         $('#selectLocalizacao').empty();
         let selectLoc = document.getElementById("selectLocalizacao");
         localizacao.forEach((local) => {
-            if(perfil == 'estudante')
+            if(perfil != 'tecnico')
                 if(!restringirEstudantes['localizacao'].includes(local['loc']))
-                    return;
+                        return;
             let option = document.createElement("option");
             option.text = local['loc'];
             option.value = local['loc'];
             selectLoc.add(option);
         });
+        if(perfil == 'docente'){
+            let option = document.createElement("option");
+            option.text = 'Reitoria';
+            option.value = 'Reitoria';
+            selectLoc.add(option);
+        }
         $('#resposta-q4').empty();
         novoBloco(4, false); // QUESTÃO 4
         $('#resposta-q5').empty();
