@@ -86,12 +86,12 @@ Template.formulario.onRendered(function() {
     contadores = {1: 0, 2: 0, 3: 0, 7: 0, 8: 0};
     telaCadastro = 0;
     renderizaTela(telaCadastro);
+    novoBloco(1, true);
+    novoBloco(2, true);
+    novoBloco(3, true);
+    novoBloco(7, true);
+    novoBloco(8, true);
     $('select').formSelect();
-    $("#btn-nova-resposta-q1").text("Responder");
-    $("#btn-nova-resposta-q2").text("Responder");
-    $("#btn-nova-resposta-q3").text("Responder");
-    $("#btn-nova-resposta-q7").text("Responder");
-    $("#btn-nova-resposta-q8").text("Responder");
 });
 
 Template.formulario.events({
@@ -272,8 +272,9 @@ var novoBloco = function(nQuestao, qIncremental){ // nQuestao = nº da questão,
     if(qIncremental){
         if(!contadores[nQuestao]) // Quando inserir um novo bloco, muda-se o rótulo do botão
             $("#btn-nova-resposta-q" + nQuestao).text("Nova Resposta");
+        if(contadores[nQuestao])
+            Bert.alert("Nova resposta na questão ["+nQuestao+"]", "info", "growl-top-left");
         contadores[nQuestao] = contadores[nQuestao] + 1; // Incrementa-se o contador de input's de resposta da questão clicada
-        Bert.alert("Nova resposta na questão ["+nQuestao+"]", "info", "growl-top-left");
     }
 }
 
