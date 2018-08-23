@@ -19,8 +19,11 @@ input[type="url"]:not(.browser-default), input[type="time"]:not(.browser-default
 input[type="number"]:not(.browser-default), input[type="search"]:not(.browser-default), textarea.materialize-textarea{
     color: black;
     border-bottom: 1px solid #24824e;
-}
 
+}
+textarea.materialize-textarea{
+    height: 6rem;
+}
 body{
     font-family: 'Fira Sans', sans-serif;
 }
@@ -35,7 +38,7 @@ body{
     font-weight: bold;
 }
 .texto-introducao{
-    text-align: center;
+    text-align: left;
     font-size: 18px;
     margin-bottom: 40px;
 }

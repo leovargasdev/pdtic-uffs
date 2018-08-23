@@ -196,21 +196,32 @@ var obterRespostas = function(nResposta, campo){
     let result = {};
     if(nResposta == 1 || nResposta == 2 || nResposta == 3 || nResposta == 7){
         for(let k = 0; k < contadores[nResposta]; k++){
-            result[k] = {
-                d: campo['r' + nResposta + campos['d'] + k].value.replace(/(\r\n|\n|\r)/gm," "),
-                j: campo['r' + nResposta + campos['j'] + k].value.replace(/(\r\n|\n|\r)/gm," ")
-            };
-            if(nResposta == 3){
-                result[k]['s'] = campo['r' + nResposta + campos['s'] + k].value;
+            const descricao = campo['r' + nResposta + campos['d'] + k].value.replace(/(\r\n|\n|\r)/gm," ");
+            const justificativa = campo['r' + nResposta + campos['j'] + k].value.replace(/(\r\n|\n|\r)/gm," ");
+            if(descricao || justificativa){
+                result[k] = {d: descricao, j: justificativa};
+                if(nResposta == 3)
+                    result[k]['s'] = campo['r' + nResposta + campos['s'] + k].value;
             }
         }
     } else if(nResposta == 4 || nResposta == 5 || nResposta == 6){
         let grupo = 0;
+        let perfil = $("#selectPerfil").val();
         let itens = [];
+
         if(nResposta == 4)      itens = sistemas;
         else if(nResposta == 5) itens = servicos;
         else                    itens = equipamentos;
+
         itens.forEach((item) => {
+            if(perfil == 'estudante'){
+                if(nResposta == 4 && !restringirEstudantes['sistemas'].includes(item['valor']))
+                    return;
+                else if(nResposta == 5 && !restringirEstudantes['servicos'].includes(item['valor']))
+                    return;
+                else if(nResposta == 6 && !restringirEstudantes['equipamentos'].includes(item['valor']))
+                    return;
+            }
             result[grupo] = {
                 s: item['valor'],
                 c: classificacao[campo['r' + nResposta + 'Grupo' + grupo].value]
@@ -219,9 +230,9 @@ var obterRespostas = function(nResposta, campo){
         });
     } else if(nResposta == 8){
         for(let k = 0; k < contadores[nResposta]; k++){
-            result[k] = {
-                n: campo['r' + nResposta + campos['n'] + k].value.replace(/(\r\n|\n|\r)/gm," ")
-            };
+            const necessidade = campo['r' + nResposta + campos['n'] + k].value.replace(/(\r\n|\n|\r)/gm," ");
+            if(necessidade)
+                result[k] = {n: necessidade};
         }
     }
     if(!Object.keys(result).length)
