@@ -1,9 +1,12 @@
 <template name="respostas">
-    {{#each aux}}
-        <div class="row">
-            <p>
+    {{#if currentUser}}
+        {{#each aux}}
+            <div class="row">
+                <p>
                 [Resposta {{numero}}] [{{nome}}] {{papel}}, <b>Localização: </b>{{localizacao}}
-            </p>
-        </div>
-    {{/each}}
+                </p>
+            </div>
+        {{/each}}
+    {{else}}
+    {{/if}}
 </template>
