@@ -19,7 +19,6 @@ input[type="url"]:not(.browser-default), input[type="time"]:not(.browser-default
 input[type="number"]:not(.browser-default), input[type="search"]:not(.browser-default), textarea.materialize-textarea{
     color: black;
     border-bottom: 1px solid #24824e;
-
 }
 textarea.materialize-textarea{
     height: 6rem;
@@ -55,6 +54,7 @@ body{
 }
 .titulo-questao{
     font-size: 18px;
+    /* padding: 2px; */
 }
 .btn-nova-resposta a{
     font-size: 14px;
@@ -74,6 +74,13 @@ body{
     position: inherit !important;
     opacity: 1 !important;
 }
+.container-radios, .container-radios-cinza{
+    padding: 5px;
+    border-radius: 12px;
+}
+.container-radios-cinza{
+    background-color: #efefef;
+}
 .form-radios-mobile{
     display: none;
 }
@@ -82,6 +89,7 @@ body{
 }
 #questoes-tela-1, #questoes-tela-2, #questoes-tela-3, #questoes-tela-4, #btn-enviar{
     display: none;
+    padding: 5px;
 }
 .logo-desktop{
     display: block;
@@ -103,6 +111,15 @@ body{
 textarea.materialize-textarea{
     min-height: 5rem;
 }
+.texto-obrigado{
+    font-size: 44px;
+    color: #1b693e;
+    font-weight: bold;
+    margin-top: 80px;
+}
+.texto-resposta-salva{
+    font-size: 28px;
+}
 @media (max-width: 1190px) {
     .titulo-questionario h2{
         text-align: center;
@@ -119,6 +136,10 @@ textarea.materialize-textarea{
     }
     .btn-nova-resposta a{
         font-size: 13px;
+    }
+    .container-radios, .container-radios-cinza{
+        background-color: white;
+        padding: 0px;
     }
     .form-radios-mobile{
         display: block;
@@ -142,6 +163,7 @@ textarea.materialize-textarea{
     }
     .titulo-questao{
         font-size: 14px;
+        /* padding: 0px 5px; */
     }
     h2{
         font-size: 32px;
@@ -156,6 +178,11 @@ textarea.materialize-textarea{
     .texto-introducao{
         font-size: 16px;
         margin-bottom: auto;
+        padding: 15px;
+        margin-top: -20px;
+    }
+    textarea.materialize-textarea{
+        font-size: 13.5px;
     }
 }
 @media (max-width: 600px) {
@@ -166,9 +193,16 @@ textarea.materialize-textarea{
         display: block;
     }
     .label-formulario{
-        font-size: 20px;
+        font-size: 18px;
     }
     .texto-introducao{
         font-size: 14px;
+    }
+    .texto-obrigado{
+        font-size: 29px;
+        margin-top: 65px;
+    }
+    .texto-resposta-salva{
+        font-size: 18px;
     }
 }

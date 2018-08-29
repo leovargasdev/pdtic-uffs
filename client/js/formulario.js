@@ -140,8 +140,13 @@ Template.formulario.events({
 
     },
     'click #btn-avanca-cadastro': function(event){
-        let perfil = $("#selectPerfil").val();
-        let localizacao = $("#selectLocalizacao").val();
+        // const recaptcha = $('#g-recaptcha-response').val() || 'vazio';
+        // if(recaptcha == 'sem'){
+        //     Router.go("/");
+        //     return false;
+        // }
+        const perfil = $("#selectPerfil").val();
+        const localizacao = $("#selectLocalizacao").val();
         let menssagemAlert = "";
         if(telaCadastro == 0){
             if(!perfil && !localizacao)    menssagemAlert = "Perfil e Localização";
@@ -166,14 +171,15 @@ Template.formulario.events({
         }
     },
     'submit .formulario-uffs': function(event){
-        let respostas = {}
+        let respostas = {};
+        // const response = event.target['g-recaptcha-response'].value || 'vazio';
+        // const vR = Meteor.call('validaRecaptcha', response);
         let nomeIndividuo = event.target.nomeIndividuo.value || "Sem identificaçao";
         let perfil = event.target.perfilUFFS.value;
         let localizacao = event.target.localizacaoUFFS.value;
         if(isNotEmpty(perfil, "p") && isNotEmpty(localizacao, "c")){
             for(let question = 1; question < 9; question++)
                 respostas[question] = obterRespostas(question, event.target);
-            console.log(respostas);
             Meteor.call('novaResposta', nomeIndividuo, perfil, localizacao, respostas);
             Router.go("/obrigado");
         }
@@ -354,7 +360,7 @@ var blocoForm = function(nQuestao){
         const classLabel = {4:'col s12 m12 l5', 5:'col s5 m4 l5', 6: 'col s12 m12 l5'};
         // Rotúlo valores radio button
         result = '  <center class="form-radios-desktop">\
-                        <div class="row">\
+                        <div class="row container-radios">\
                             <div class="col l1 offset-l5">' + rRadios[1] + '</div>\
                             <div class="col l1">' + rRadios[2] + '</div>\
                             <div class="col l1">' + rRadios[3] + '</div>\
@@ -373,7 +379,10 @@ var blocoForm = function(nQuestao){
                 else if(nQuestao == 6 && !restringirEstudantes['equipamentos'].includes(s['valor']))
                     return;
             }
-            let aux = '<div class="row"><div class="' + classLabel[nQuestao] + '"><b>' + s['valor'] + ': </b></div>';
+            let classeDiv = "row container-radios"
+            if(nGrupos%2 == 0)
+                classeDiv = classeDiv + "-cinza";
+            let aux = '<div class="'+classeDiv+'"><div class="' + classLabel[nQuestao] + '"><b>' + s['valor'] + ': </b></div>';
 
             for(let radioNum = 1; radioNum < 8; radioNum++){
                 aux = aux + '<center>\
