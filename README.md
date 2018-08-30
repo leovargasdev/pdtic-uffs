@@ -1,5 +1,5 @@
 # uffs-form
 
-###meteor remove autopublish
+### meteor remove autopublish
 
-###meteor npm install --save bcrypt
+### meteor npm install --save bcrypt
