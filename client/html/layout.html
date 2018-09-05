@@ -18,9 +18,36 @@
 <template name="home_pagina">
         <!-- Page Content goes here -->
         <div class="main-content">
+            {{#if currentUser}}
+                {{> botoes}}
+            {{/if}}
+            {{> headerPaginas}}
             {{> yield}}
         </div>
 </template>
+
+<template name="headerPaginas">
+    <div class="card-panel cor-uffs">
+        <div class="row">
+            <!-- LOGO [mobile]-->
+            <div class="logo-mobile col s12">
+                <center>
+                    <img src="uffs_logo.png" alt="Logo da Universidade Federal da Fronteira Sul">
+                </center>
+            </div>
+            <!-- TEXTO HEADER -->
+            <div class="col s12 m7 l8 titulo-questionario">
+                <a href="/"><h2>Questionário do PDTIC</h2></a>
+            </div>
+            <!-- LOGO [desktop]-->
+            <div class="logo-desktop col s12 m5 l4">
+                <img src="uffs_logo.png" alt="Logo da Universidade Federal da Fronteira Sul">
+            </div>
+            <div class="divider"></div>
+        </div>
+    </div>
+</template>
+
 
 <template name="obrigado">
     <div class="row">
@@ -49,4 +76,18 @@
         <p class="texto-resposta-salva">Suas repostas foram registradas com sucesso!</p>
 
     </center>
+</template>
+
+<template name="botoes">
+    <div style="margin-top:10px;margin-bottom:-5px" class="row">
+        <div class="col m2 l2">
+            <a href="/respostas" style="width:100%" class="waves-effect waves-light btn brown darken-2">RESPOSTAS</a>
+        </div>
+        <div class="col m2 l2">
+            <a id="gerar-sql" style="width:100%" class="waves-effect waves-light btn green darken-2">GERAR SQL</a>
+        </div>
+        <div class="col m2 l2">
+            <a id="encerrar-sesao" style="width:100%" class="waves-effect waves-light btn red darken-2">SAIR</a>
+        </div>
+    </div>
 </template>

@@ -29,6 +29,10 @@ body{
 .cor-uffs{
     background-color: #00693e;
     color: white;
+    margin: 10px;
+}
+.titulo-questionario a{
+    color: white;
 }
 .titulo-questionario h2{
     text-align: right;

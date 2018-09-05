@@ -15,7 +15,7 @@ Primeiramente é necessário fazer o download do [Meteor](https://www.meteor.com
 $ meteor npm install --save bcrypt
 ```
 
-[babel] (https://babeljs.io/docs/en/next/babel-runtime.html)
+[babel](https://babeljs.io/docs/en/next/babel-runtime.html)
 
 ```sh
 $ meteor npm install --save @babel/runtime@7.0.0-beta.55

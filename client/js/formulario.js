@@ -185,16 +185,6 @@ Template.formulario.events({
         }
         return false;
     },
-    "click #encerrar-sesao": function(event){
-        Meteor.logout(function(err){
-            if(err){
-                Bert.alert(err.reason, "danger", "growl-top-right");
-            }else{
-                Bert.alert("Saiu de boas", "success", "growl-top-right");
-                Router.go('/');
-            }
-        });
-    },
 })
 
 var obterRespostas = function(nResposta, campo){
