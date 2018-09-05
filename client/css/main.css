@@ -148,6 +148,12 @@ textarea.materialize-textarea{
     .form-radios-mobile{
         display: block;
     }
+    .texto-introducao{
+        font-size: 16px;
+        margin-bottom: auto;
+        padding: 15px;
+        margin-top: -20px;
+    }
     .form-radios-desktop{
         display: none;
     }
@@ -178,12 +184,6 @@ textarea.materialize-textarea{
     .label-formulario{
         font-size: 22px;
         margin-top: 28px;
-    }
-    .texto-introducao{
-        font-size: 16px;
-        margin-bottom: auto;
-        padding: 15px;
-        margin-top: -20px;
     }
     textarea.materialize-textarea{
         font-size: 13.5px;
