@@ -21,6 +21,12 @@ $ meteor npm install --save bcrypt
 $ meteor npm install --save @babel/runtime@7.0.0-beta.55
 ```
 
+[node-stubs](https://github.com/meteor/node-stubs)
+
+```sh
+$ meteor npm install --save meteor-node-stubs
+```
+
 OBS: Para instalar todos pacotes de uma só vez, basta executar
 
 ```sh

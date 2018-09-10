@@ -1,0 +1,32 @@
+{
+  "name": "uffs-form",
+  "version": "1.0.0",
+  "description": "Pacotes npm",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.55",
+    "bcrypt": "^3.0.0",
+    "fs": "0.0.1-security",
+    "fs-web": "^1.0.1",
+    "meteor-node-stubs": "^0.4.1",
+    "pdfmake": "^0.1.38"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeeonardoVargas/uffs-form.git"
+  },
+  "author": "Leonardo Vargas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeeonardoVargas/uffs-form/issues"
+  },
+  "homepage": "https://github.com/LeeonardoVargas/uffs-form#readme"
+}
