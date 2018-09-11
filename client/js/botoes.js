@@ -1,6 +1,4 @@
 import { Template } from 'meteor/templating';
-// import { pdfMake } from 'pdfmake';
-// var fs = require('fs');
 
 Template.botoes.events({
     'click #gerar-sql': function(event){
@@ -12,6 +10,8 @@ Template.botoes.events({
                 obterRespostas(resposta[aux], k);
             }
         });
+        let olar = "olar";
+        Router.go("/text/"+olar);
     },
     'click #encerrar-sesao': function(event){
         Meteor.logout(function(err){
