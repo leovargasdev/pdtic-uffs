@@ -34,9 +34,9 @@ const obterRespostas = (usuarioID, respostas, nQuestao) =>{
         for(r in respostas){
             if(nQuestao < 4 || nQuestao == 7){ // QUESTÕES: 1,2,3,7
                 if(nQuestao == 3){
-                    tuplas.push("INSERT INTO questao3_pdtic (descricao, justificativa, sistema, id_usuario) VALUES ('" + respostas[r]['d'] + "', '" + respostas[r]['j'] + "', '" + respostas[r]['s'] + "', '" + usuarioID + "');");
+                    tuplas.push("INSERT INTO questao3 (descricao, justificativa, sistema, id_usuario) VALUES ('" + respostas[r]['d'] + "', '" + respostas[r]['j'] + "', '" + respostas[r]['s'] + "', '" + usuarioID + "');");
                 } else {
-                    tuplas.push("INSERT INTO questao" + nQuestao + "_pdtic (descricao, justificativa, id_usuario) VALUES ('" + respostas[r]['d'] + "', '" + respostas[r]['j'] + "', '"+ usuarioID + "');");
+                    tuplas.push("INSERT INTO questao" + nQuestao + " (descricao, justificativa, id_usuario) VALUES ('" + respostas[r]['d'] + "', '" + respostas[r]['j'] + "', '"+ usuarioID + "');");
                 }
             } else if(nQuestao > 3 && nQuestao < 7){ // QUESTÕES: 4,5,6
                 if('c' in respostas[r]){
@@ -44,10 +44,10 @@ const obterRespostas = (usuarioID, respostas, nQuestao) =>{
                     if(nQuestao == 4) aux = "sistema";
                     else if(nQuestao == 5) aux = "servico";
                     else aux = "equipamento";
-                    tuplas.push("INSERT INTO questao" + nQuestao + "_pdtic (" + aux + ", classificacao, id_usuario) VALUES ('" + respostas[r]['s'].replace("/", "_") + "', '" + respostas[r]['c'] + "', '" + usuarioID + "');");
+                    tuplas.push("INSERT INTO questao" + nQuestao + " (" + aux + ", classificacao, id_usuario) VALUES ('" + respostas[r]['s'].replace("/", "_") + "', '" + respostas[r]['c'] + "', '" + usuarioID + "');");
                 }
             } else { // QUESTÃO: 8
-                tuplas.push("INSERT INTO questao8_pdtic (consideracao, id_usuario) VALUES ('" + respostas[r]['n'] + "', '" + usuarioID + "');");
+                tuplas.push("INSERT INTO questao8 (consideracao, id_usuario) VALUES ('" + respostas[r]['n'] + "', '" + usuarioID + "');");
             }
         }
     }
